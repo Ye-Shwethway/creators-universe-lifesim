@@ -9,6 +9,7 @@ var focused: StaticBody3D
 var object_states: Dictionary = {}
 var interact_button: Button
 var feedback: Label
+var action_engine: LifeSimActionEngine
 
 func _ready() -> void:
     var ground := StaticBody3D.new()
@@ -57,10 +58,14 @@ func _ready() -> void:
     hud.movement_changed.connect(func(a: Vector2) -> void: player.input_axis = a)
     hud.camera_dragged.connect(_orbit)
     hud.pause_toggled.connect(_pause)
+    action_engine = LifeSimActionEngine.new()
+    add_child(action_engine)
+    action_engine.action_event.connect(_on_action_event)
     _setup_interaction_ui(layer)
 
 func _physics_process(delta: float) -> void:
     if paused: return
+    action_engine.advance(delta)
     _refresh_focus()
     player.camera_yaw = yaw
     var focus := player.global_position + Vector3.UP * 1.2
