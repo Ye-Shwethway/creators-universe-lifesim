@@ -104,3 +104,6 @@ GitHub Actions run 38869748123 SUCCESS after adding Xvfb/Mesa (prior run 3886952
 
 ## Character visual adapter — 2026-10-16
 New visual adapter with missing-asset/missing-animation procedural fallback implemented and wired; Godot validator 38872498839 PASS. No Orison model added or approved; approved-scene branch remains untested on device. Runtime browser and adapter fallback regression require separate QA, so M1.3 gate PARTIAL.
+
+## M1.3 character adapter production deployment — 2026-10-16
+Godot validate run 38872498839 SUCCESS; Web deploy run 38872624167 SUCCESS; Cloudflare deployment 25442735-503c-4a4f-b756-f52b291d9bdb status success at commit 378e2733bcf88c82520c35552468587f4f7e32d3. `LifeSimCharacterVisual` safely retains procedural humanoid until an approved scene and idle/walk clips exist. No Orison model in public build, no APK build. Redmi K70 adapter regression not yet device-verified.
