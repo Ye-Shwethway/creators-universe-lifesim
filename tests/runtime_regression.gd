@@ -60,10 +60,13 @@ func _execute() -> void:
     var walk_clip: Animation = visual.animator.get_animation(visual._resolve_animation("walk_in_place"))
     var idle_clip: Animation = visual.animator.get_animation(visual._resolve_animation("idle_in_place"))
     _assert(walk_clip.loop_mode == Animation.LOOP_LINEAR and idle_clip.loop_mode == Animation.LOOP_LINEAR, "imported idle/walk clips enforce continuous looping")
-    visual.update_locomotion(0.016, 3.0)
-    _assert(visual.active_motion.ends_with("walk_in_place"), "walk animation selected by movement")
-    visual.update_locomotion(0.016, 0.0)
-    _assert(visual.active_motion.ends_with("idle_in_place"), "idle animation selected when stopped")
+    _assert(visual.blend_tree != null and visual.blend_tree.active, "AnimationTree active with imported rig")
+    for i in 15:
+        visual.update_locomotion(0.016, 4.2)
+    _assert(visual.locomotion_blend > 0.95, "walk blend rises smoothly with movement speed")
+    for i in 15:
+        visual.update_locomotion(0.016, 0.0)
+    _assert(visual.locomotion_blend < 0.05, "idle blend returns smoothly after stopping")
     _assert(is_equal_approx(atan2(0.0, 1.0), 0.0), "controller +Z facing convention")
     var nav := LifeSimRoomPathfinder.new()
     _assert(not nav.route(Vector3.ZERO, Vector3(3.4, 0, -2.6)).size() > 0, "furniture destinations rejected")
