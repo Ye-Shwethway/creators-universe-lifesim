@@ -16,8 +16,9 @@ func _ready() -> void:
     right_arm = _limb("RightArm", Vector3(0.43, 1.57, 0), Vector3(0, -0.34, 0), Vector3(0.21, 0.70, 0.22), Color(0.75, 0.53, 0.37))
     left_leg = _limb("LeftLeg", Vector3(-0.16, 0.77, 0), Vector3(0, -0.38, 0), Vector3(0.24, 0.77, 0.25), Color(0.17, 0.24, 0.33))
     right_leg = _limb("RightLeg", Vector3(0.16, 0.77, 0), Vector3(0, -0.38, 0), Vector3(0.24, 0.77, 0.25), Color(0.17, 0.24, 0.33))
-    _part("LeftFoot", Vector3(-0.16, 0.09, -0.11), Vector3(0.26, 0.17, 0.45), Color(0.10, 0.13, 0.17))
-    _part("RightFoot", Vector3(0.16, 0.09, -0.11), Vector3(0.26, 0.17, 0.45), Color(0.10, 0.13, 0.17))
+    # Player movement uses local +Z as forward; shoe toes must project toward +Z.
+    _part("LeftFoot", Vector3(-0.16, 0.09, 0.11), Vector3(0.26, 0.17, 0.45), Color(0.10, 0.13, 0.17))
+    _part("RightFoot", Vector3(0.16, 0.09, 0.11), Vector3(0.26, 0.17, 0.45), Color(0.10, 0.13, 0.17))
 
 func _part(label: String, at: Vector3, dimensions: Vector3, tint: Color, rounded: bool = false) -> void:
     var node := MeshInstance3D.new()
