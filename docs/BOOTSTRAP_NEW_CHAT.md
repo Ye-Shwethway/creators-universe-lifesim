@@ -20,3 +20,6 @@ Task | branch/commit | milestone | changed paths | test results | asset classifi
 
 ## Active development preference
 Creator approved Web-first iteration on 2026-10-16. Test and deploy Web routinely; **do not trigger Android APK builds automatically**. Preserve manual `build-android.yml` for later cross-platform validation. Redmi K70 controls work, but floor fall/recovery bug was reported. Consult ROADMAP for latest slice status and CURRENT_STATE for verification evidence.
+
+## CI simulation regression — 2026-10-16
+Creator device-confirmed Cloudflare owner login. Added tests/runtime_regression.gd to CI for action transitions, save clamping/counts, corrupt save handling and procedural visual fallback. Found/fixed shutdown detached-player save bug. Validate run 38874462587 SUCCESS (13 assertions); Web deploy run 38874646788 SUCCESS, Cloudflare deployment 978f05aa-afd9-43fd-aaf2-9522e28b96da success, matching commit 926f0d00ee3c8e1fb62a5cc7f6c9979e196cb22e. Browser runtime on new deploy not independently retested, APK not triggered, Orison batch-02 not integrated.
