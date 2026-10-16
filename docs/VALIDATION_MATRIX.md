@@ -86,3 +86,6 @@ Isolated candidate normalized by Blender and imported in Godot 4.7.2 without mat
 
 ## M1.3 instantiated resource test — 2026-10-16
 Added Godot PackedScene instantiation and enumeration of Skeleton3D, bones, MeshInstance3D, blend shapes and AnimationPlayer clips. Run 38868131012 pending; no real-device rendering or morph deformation evidence yet. V09 still partial.
+
+## Instantiated Godot humanoid gate VERIFIED — 2026-10-16
+Run https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38868131012 completed SUCCESS. Godot scene actually loaded/instantiated after Blender normalization, runtime stdout: `LIFESIM_HUMANOID_INSPECT skeletons=1 bones=52 mesh_nodes=4 shape_keys=395 clips=0`. These are summed shape keys across mesh instances, not 395 unique editable body attributes. Thus structural rig/shape imports PASS; **zero imported animation clips**, and individual physique controls/body deformation, legal redistribution, and mobile Web performance remain UNVERIFIED. Candidate still only in isolated CI, not shipped. Next: animation retarget/author idle-walk and pose/morph semantic audit; preserve existing visual until gates passed. APK manual-only.
