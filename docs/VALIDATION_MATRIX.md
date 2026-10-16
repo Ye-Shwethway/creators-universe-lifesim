@@ -32,3 +32,6 @@ Godot CI 38859675610 SUCCESS; Web CI 38859675605 SUCCESS; Pages production deplo
 
 ## Redmi K70 follow-up — 2026-10-16
 Creator-supplied three screenshots and verbal device test verify bounded room visualization, camera orbit, no repeated falls and basic solid-object collisions/contact. This does NOT verify proximity prompts, INTERACT UI, scene event state, Android runtime, FPS, camera obstruction handling or automated regression tests; those gates remain open.
+
+## M1.2 interaction gate — 2026-10-16
+Proximity button and state counter implemented and passed headless Godot validation (run 38860662402); Pages production deploy (run 38860715373, deployment 25c4981a-8a3d-4a29-a952-ec1cad65ab92) SUCCESS. Device browser tap/interactions, exactly-once behavior, pause/range regressions and persistent event state are not verified. No Android workflow was triggered.
