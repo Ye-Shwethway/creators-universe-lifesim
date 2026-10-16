@@ -65,3 +65,6 @@ GitHub deploy run 38863369314 completed SUCCESS; Cloudflare production deploymen
 
 ## M1.3 character/lighting spike — 2026-10-16
 Code-level original geometry humanoid with simple limb swing and room material/ambient changes; Godot validation 38865092817 PASS. Creator phone screenshot documents black wall regions before patch. Post-patch phone visual, frame rate, MakeHuman rig/glTF blend shapes and animation deformation remain NOT VERIFIED. Do not mark character asset acceptance gate PASS. APK not built.
+
+## M1.3 Web deployment confirmed — 2026-10-16
+Godot validate 38865092817 SUCCESS; Cloudflare deploy workflow 38865152354 production release succeeded; Cloudflare deployment 1802de7e-19c0-47cf-b49b-3e63a16cfe66 SUCCESS from source commit 2726fa3545a7140718cfa7c1717d97fba8300af2. New procedural humanoid is NOT MakeHuman, and phone runtime render/lighting changes are not yet verified. Keep M1.3 OPEN, APK manual-only.
