@@ -38,3 +38,12 @@ Status is evidence-driven: planned / in-progress / built / CI-verified / device-
 
 ## Later
 Improved art fidelity, private character pack delivery, longer-term narrative, optional AI dialogue, privacy-safe cross-device sync.
+
+## Research gates before implementation (2026-10-16)
+- [x] Document engine upgrade decision and exact-version acceptance criteria (docs/decisions/ADR-0001-engine-and-platform.md)
+- [x] Draft deterministic simulation ownership, tick and mode policy (docs/decisions/ADR-0002-simulation-state.md)
+- [x] Evaluate procedural / Blender / third-party / MakeHuman candidate routes with licensing boundary (docs/RESEARCH_CHARACTER_ASSETS.md)
+- [x] Define V01–V12 evidence gates (docs/VALIDATION_MATRIX.md)
+- [ ] Verify pinned Godot 4.7 patch and compatible CI Android/Web export
+- [ ] Test one genuine rigged/morphable legally cleared humanoid GLB
+- [ ] Validate Web + debug APK on Redmi K70 before accepting M0/M1
