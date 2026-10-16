@@ -56,3 +56,6 @@ Godot validate run 38862774933 SUCCESS. Cloudflare deploy run 38862907783 SUCCES
 
 ## Redmi K70 persistence device gate — 2026-10-16
 Creator reports previous avatar position restored after exiting/reentering LifeSim. Screenshot shows completed interaction count 5. Position + count continuity are device-verified; camera yaw/pitch restore, malformed save recovery and full-world persistence remain unverified. V08 still PARTIAL.
+
+## Camera wall-occlusion QA — 2026-10-16
+User device reentry confirms avatar position restoration and continued counter (5); no independent camera yaw/pitch restoration proof. Camera collision raycast committed, Godot validation run 38863320136 PASS. Await production Pages deployment and physical test before camera clipping gate PASS. APK manual-only.
