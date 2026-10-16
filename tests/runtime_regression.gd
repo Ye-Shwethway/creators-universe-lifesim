@@ -56,9 +56,10 @@ func _execute() -> void:
     get_root().add_child(visual)
     await process_frame
     _assert(visual.visual_mode() == "rigged", "batch-02 GLB imported and adapter activated")
-    _assert(visual.animator != null and visual._has_motion("idle_in_place") and visual._has_motion("walk_in_place"), "two real animation clips found")
-    var walk_clip: Animation = visual.animator.get_animation(visual._resolve_animation("walk_in_place"))
-    var idle_clip: Animation = visual.animator.get_animation(visual._resolve_animation("idle_in_place"))
+    _assert(visual.animator != null and visual._has_motion(visual.selected_idle) and visual._has_motion(visual.selected_walk), "selected animation pair exists")
+    _assert(visual.selected_idle == "idle_in_place" and visual.selected_walk == "walk_in_place", "batch-02 remains backwards-compatible")
+    var walk_clip: Animation = visual.animator.get_animation(visual._resolve_animation(visual.selected_walk))
+    var idle_clip: Animation = visual.animator.get_animation(visual._resolve_animation(visual.selected_idle))
     _assert(walk_clip.loop_mode == Animation.LOOP_LINEAR and idle_clip.loop_mode == Animation.LOOP_LINEAR, "imported idle/walk clips enforce continuous looping")
     _assert(visual.blend_tree != null and visual.blend_tree.active, "AnimationTree active with imported rig")
     for i in 15:
