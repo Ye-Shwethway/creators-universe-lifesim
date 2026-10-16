@@ -3,6 +3,7 @@ class_name LifeSimMobileControls
 
 signal movement_changed(axis: Vector2)
 signal camera_dragged(delta: Vector2)
+signal destination_tapped(screen_position: Vector2)
 signal camera_zoomed(amount: float)
 signal pause_toggled
 signal reset_camera
@@ -10,6 +11,8 @@ signal run_changed(active: bool)
 
 var joystick_id: int = -1
 var camera_id: int = -1
+var camera_start: Vector2 = Vector2.ZERO
+var camera_drag_distance: float = 0.0
 var joystick_origin: Vector2 = Vector2.ZERO
 var joystick_axis: Vector2 = Vector2.ZERO
 var paused: bool = false
@@ -39,6 +42,8 @@ func _input(event: InputEvent) -> void:
                 get_viewport().set_input_as_handled()
             elif touch.position.x >= size.x * 0.45 and camera_id == -1:
                 camera_id = touch.index
+                camera_start = touch.position
+                camera_drag_distance = 0.0
         else:
             if touch.index == joystick_id:
                 joystick_id = -1
@@ -47,6 +52,8 @@ func _input(event: InputEvent) -> void:
                 queue_redraw()
                 get_viewport().set_input_as_handled()
             if touch.index == camera_id:
+                if camera_drag_distance < 15.0 and camera_start.distance_to(touch.position) < 15.0:
+                    destination_tapped.emit(touch.position)
                 camera_id = -1
     elif event is InputEventScreenDrag:
         var drag := event as InputEventScreenDrag
@@ -56,10 +63,14 @@ func _input(event: InputEvent) -> void:
             queue_redraw()
             get_viewport().set_input_as_handled()
         elif drag.index == camera_id:
-            camera_dragged.emit(drag.relative)
+            camera_drag_distance += drag.relative.length()
+            if camera_drag_distance >= 15.0:
+                camera_dragged.emit(drag.relative)
             get_viewport().set_input_as_handled()
     elif event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
         camera_dragged.emit((event as InputEventMouseMotion).relative)
+    elif event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+        destination_tapped.emit(event.position)
     elif event is InputEventMouseButton and event.pressed:
         var mouse := event as InputEventMouseButton
         if mouse.button_index == MOUSE_BUTTON_WHEEL_UP:
