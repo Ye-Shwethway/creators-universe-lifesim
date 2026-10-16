@@ -12,6 +12,10 @@ var interact_button: Button
 var feedback: Label
 var action_engine: LifeSimActionEngine
 var save_elapsed: float = 0.0
+var _manual_axis: Vector2 = Vector2.ZERO
+var navigation: LifeSimRoomPathfinder
+var auto_path: Array[Vector3] = []
+var auto_marker: MeshInstance3D
 
 func _ready() -> void:
     var ground := StaticBody3D.new()
@@ -64,8 +68,16 @@ func _ready() -> void:
     add_child(layer)
     var hud := LifeSimMobileControls.new()
     layer.add_child(hud)
-    hud.movement_changed.connect(func(a: Vector2) -> void: player.input_axis = a)
+    hud.movement_changed.connect(func(a: Vector2) -> void:
+        _manual_axis = a
+        player.input_axis = a
+        if a.length_squared() > 0.02:
+            _cancel_navigation()
+    )
     hud.camera_dragged.connect(_orbit)
+    hud.destination_tapped.connect(_tap_destination)
+    navigation = LifeSimRoomPathfinder.new()
+    _create_destination_marker()
     hud.pause_toggled.connect(_pause)
     action_engine = LifeSimActionEngine.new()
     add_child(action_engine)
@@ -80,6 +92,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
     if paused: return
+    _advance_navigation()
     action_engine.advance(delta)
     save_elapsed += delta
     if save_elapsed >= 3.0:
@@ -113,6 +126,66 @@ func _pause() -> void:
     paused = not paused
     player.set_physics_process(not paused)
     player.input_axis = Vector2.ZERO
+    _manual_axis = Vector2.ZERO
+    _cancel_navigation()
+
+func _create_destination_marker() -> void:
+    auto_marker = MeshInstance3D.new()
+    auto_marker.name = "DestinationMarker"
+    var disc := CylinderMesh.new()
+    disc.top_radius = 0.28
+    disc.bottom_radius = 0.28
+    disc.height = 0.025
+    auto_marker.mesh = disc
+    var mat := StandardMaterial3D.new()
+    mat.albedo_color = Color(0.25, 0.95, 0.65, 0.85)
+    mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+    auto_marker.material_override = mat
+    auto_marker.visible = false
+    add_child(auto_marker)
+
+func _cancel_navigation() -> void:
+    auto_path.clear()
+    if auto_marker != null:
+        auto_marker.visible = false
+
+func _tap_destination(screen_position: Vector2) -> void:
+    if paused or cam == null or player == null:
+        return
+    var origin: Vector3 = cam.project_ray_origin(screen_position)
+    var direction: Vector3 = cam.project_ray_normal(screen_position)
+    if absf(direction.y) < 0.0001:
+        return
+    var distance: float = -origin.y / direction.y
+    if distance <= 0.0 or distance > 100.0:
+        return
+    var target: Vector3 = origin + direction * distance
+    var path: Array[Vector3] = navigation.route(player.global_position, target)
+    if path.is_empty():
+        return
+    auto_path = path
+    auto_marker.position = Vector3(target.x, 0.04, target.z)
+    auto_marker.visible = true
+
+func _advance_navigation() -> void:
+    var kb: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+    if kb.length_squared() > 0.02 or _manual_axis.length_squared() > 0.02:
+        if not auto_path.is_empty():
+            _cancel_navigation()
+        return
+    if auto_path.is_empty():
+        return
+    while not auto_path.is_empty() and player.global_position.distance_to(auto_path[0]) < 0.28:
+        auto_path.pop_front()
+    if auto_path.is_empty():
+        player.input_axis = Vector2.ZERO
+        auto_marker.visible = false
+        return
+    var delta_pos: Vector3 = auto_path[0] - player.global_position
+    delta_pos.y = 0.0
+    var world_motion := delta_pos.normalized()
+    var local_motion: Vector3 = Basis(Vector3.UP, -yaw) * world_motion
+    player.input_axis = Vector2(local_motion.x, local_motion.z)
 
 func _build_room() -> void:
     # Light public procedural room perimeter; collision prevents leaving the platform.
