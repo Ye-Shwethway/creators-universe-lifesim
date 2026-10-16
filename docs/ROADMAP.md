@@ -109,3 +109,6 @@ Added `scripts/persistence/save_manager.gd` schema v1 allowlisted interaction co
 
 ## World pose save deployment verified — 2026-10-16
 Godot validate run 38862774933 SUCCESS. Cloudflare deploy run 38862907783 SUCCESS, Cloudflare deployment 81cbaf4a-23d5-4a34-a58c-139554497bd3 production/success at commit 9f8caa8bfa5ab1ff9918e327c4602d96218f18f2. Position/camera restore across reload is NOT phone-verified; old count-only save compatibility implemented but not regression-tested on physical device. APK manual-only.
+
+### Redmi K70 position restore verification — 2026-10-16
+Creator exited/reopened LifeSim and confirmed player resumed at the previous room location. Screenshot also shows `Training Box completed (5)`. Character position restore and usage-count continuity are DEVICE_VERIFIED. Camera yaw/pitch restoration is not independently confirmed from this screenshot. Full saves and migration remain open.
