@@ -166,3 +166,6 @@ GitHub Actions run 38869748123 SUCCESS after adding Xvfb/Mesa (prior run 3886952
 ### M1.3 game-side character adapter — 2026-10-16
 - Added `LifeSimCharacterVisual` adapter to isolate model/idle-walk animation playback from movement physics and persistence; approved assets loaded only from `res://assets/public/approved/humanoid.tscn`. Unavailable scene/animations fall back to existing procedural humanoid, without modifying Orison batch-01 or publicizing private images.
 - Wired `scripts/main.gd` through adapter. Godot validation run 38872498839 SUCCESS; Web deploy/device visual gate pending. Orison batch-02 assets and provenance not yet accepted. APK manual-only.
+
+## M1.3 character adapter production deployment — 2026-10-16
+Godot validate run 38872498839 SUCCESS; Web deploy run 38872624167 SUCCESS; Cloudflare deployment 25442735-503c-4a4f-b756-f52b291d9bdb status success at commit 378e2733bcf88c82520c35552468587f4f7e32d3. `LifeSimCharacterVisual` safely retains procedural humanoid until an approved scene and idle/walk clips exist. No Orison model in public build, no APK build. Redmi K70 adapter regression not yet device-verified.
