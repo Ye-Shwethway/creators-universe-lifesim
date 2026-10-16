@@ -10,6 +10,10 @@ var rig_root: Node3D
 var animator: AnimationPlayer
 var active_motion: String = ""
 var using_asset: bool = false
+var blend_tree: AnimationTree
+var blend_space: AnimationNodeBlendSpace1D
+var locomotion_blend: float = 0.0
+const BLEND_REFERENCE_SPEED: float = 4.2 # Prototype control speed; NOT verified stride speed.
 
 func _ready() -> void:
     fallback = ProceduralHumanoid.new()
@@ -40,9 +44,26 @@ func _ready() -> void:
         var animation: Animation = animator.get_animation(_resolve_animation(motion))
         if animation != null:
             animation.loop_mode = Animation.LOOP_LINEAR
+    # Imported GLB clips feed a speed-driven BlendSpace1D; physics retains movement ownership.
+    blend_space = AnimationNodeBlendSpace1D.new()
+    blend_space.min_space = 0.0
+    blend_space.max_space = 1.0
+    var idle_node := AnimationNodeAnimation.new()
+    idle_node.animation = _resolve_animation(IDLE)
+    var walk_node := AnimationNodeAnimation.new()
+    walk_node.animation = _resolve_animation(WALK)
+    blend_space.add_blend_point(idle_node, 0.0)
+    blend_space.add_blend_point(walk_node, 1.0)
+    blend_tree = AnimationTree.new()
+    blend_tree.name = "LocomotionTree"
+    blend_tree.anim_player = blend_tree.get_path_to(animator)
+    blend_tree.tree_root = blend_space
+    add_child(blend_tree)
+    blend_tree.active = true
+    blend_tree.set("parameters/blend_position", 0.0)
     fallback.hide()
     using_asset = true
-    _switch_motion(IDLE)
+    active_motion = _resolve_animation(IDLE)
 
 func _find_animator(root: Node) -> AnimationPlayer:
     if root is AnimationPlayer:
@@ -77,10 +98,10 @@ func update_locomotion(delta: float, horizontal_speed: float) -> void:
     if not using_asset:
         fallback.update_locomotion(delta, horizontal_speed)
         return
-    if horizontal_speed >= 0.2:
-        _switch_motion(WALK)
-    else:
-        _switch_motion(IDLE)
+    var target: float = clampf(horizontal_speed / BLEND_REFERENCE_SPEED, 0.0, 1.0)
+    locomotion_blend = move_toward(locomotion_blend, target, maxf(delta, 0.0) * 5.0)
+    blend_tree.set("parameters/blend_position", locomotion_blend)
+    active_motion = _resolve_animation(WALK if locomotion_blend >= 0.5 else IDLE)
 
 func visual_mode() -> String:
     return "rigged" if using_asset else "procedural"
