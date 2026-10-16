@@ -20,6 +20,7 @@ func _ready() -> void:
     floor_mesh.position.y = -0.1
     ground.add_child(floor_mesh)
     add_child(ground)
+    _build_room()
     player = LifeSimPlayer.new()
     var col := CollisionShape3D.new()
     var capsule := CapsuleShape3D.new()
@@ -68,3 +69,31 @@ func _pause() -> void:
     paused = not paused
     player.set_physics_process(not paused)
     player.input_axis = Vector2.ZERO
+
+func _build_room() -> void:
+    # Light public procedural room perimeter; collision prevents leaving the platform.
+    _box_prop(Vector3(0.0, 1.5, -7.0), Vector3(14.0, 3.0, 0.35), Color(0.30, 0.38, 0.44))
+    _box_prop(Vector3(-7.0, 1.5, 0.0), Vector3(0.35, 3.0, 14.0), Color(0.30, 0.38, 0.44))
+    _box_prop(Vector3(7.0, 1.5, 0.0), Vector3(0.35, 3.0, 14.0), Color(0.30, 0.38, 0.44))
+    _box_prop(Vector3(0.0, 1.5, 7.0), Vector3(14.0, 3.0, 0.35), Color(0.30, 0.38, 0.44))
+    # Simple furniture silhouettes, no third-party assets.
+    _box_prop(Vector3(3.4, 0.4, -2.6), Vector3(2.2, 0.8, 1.0), Color(0.33, 0.53, 0.58))
+    _box_prop(Vector3(-3.0, 0.45, -2.6), Vector3(1.6, 0.9, 0.8), Color(0.50, 0.38, 0.29))
+
+func _box_prop(center: Vector3, size: Vector3, tint: Color) -> void:
+    var body := StaticBody3D.new()
+    body.position = center
+    var collision := CollisionShape3D.new()
+    var shape := BoxShape3D.new()
+    shape.size = size
+    collision.shape = shape
+    body.add_child(collision)
+    var visual := MeshInstance3D.new()
+    var mesh := BoxMesh.new()
+    mesh.size = size
+    visual.mesh = mesh
+    var mat := StandardMaterial3D.new()
+    mat.albedo_color = tint
+    visual.material_override = mat
+    body.add_child(visual)
+    add_child(body)
