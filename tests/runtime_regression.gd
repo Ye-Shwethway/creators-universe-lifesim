@@ -65,7 +65,9 @@ func _execute() -> void:
     var nav := LifeSimRoomPathfinder.new()
     _assert(not nav.route(Vector3.ZERO, Vector3(3.4, 0, -2.6)).size() > 0, "furniture destinations rejected")
     _assert(not nav.route(Vector3.ZERO, Vector3(7.5, 0, 0)).size() > 0, "off-map destinations rejected")
-    _assert(nav.route(Vector3.ZERO, Vector3(4.5, 0, -4.5)).size() > 2, "route around furniture exists")
+    _assert(nav.route(Vector3.ZERO, Vector3(4.5, 0, -4.5)).size() >= 2, "route around furniture exists")
+    _assert(nav.route(Vector3.ZERO, Vector3(1.5, 0, 2.5)).size() == 1, "unobstructed path simplified to one direct target")
+    _assert(nav.route(Vector3.ZERO, Vector3(4.5, 0, -4.5)).size() < 12, "obstacle path waypoint zigzag reduced")
     visual.queue_free()
     engine.queue_free()
     # Preserve existing file if any, rather than leaving test save content behind.
