@@ -58,6 +58,10 @@ func _execute() -> void:
     _assert(visual.visual_mode() == "procedural", "missing approved asset uses fallback")
     visual.update_locomotion(0.016, 3.0)
     _assert(visual.fallback != null and visual.fallback.visible, "fallback moves without animation asset")
+    var left_shoe: MeshInstance3D = visual.fallback.get_node("LeftFoot") as MeshInstance3D
+    var right_shoe: MeshInstance3D = visual.fallback.get_node("RightFoot") as MeshInstance3D
+    _assert(left_shoe.position.z > 0.0 and right_shoe.position.z > 0.0, "procedural shoe toes align with local +Z forward")
+    _assert(is_equal_approx(atan2(0.0, 1.0), 0.0), "controller +Z facing convention")
     visual.queue_free()
     engine.queue_free()
     # Preserve existing file if any, rather than leaving test save content behind.
