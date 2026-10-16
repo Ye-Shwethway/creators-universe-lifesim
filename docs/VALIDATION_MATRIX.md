@@ -77,3 +77,6 @@ Created offline glTF/GLB audit with rig/morph metadata reporting plus test fixtu
 
 ## V09 actual GLB attempt — 2026-10-16
 Isolated candidate 52-bone/122-morph documented CC0-source GLB successfully downloaded and passed metadata-only rig/morph audit in 38866915144. However Godot reported many sparse indices buffer-view errors, so real import/visual readiness FAILS despite overall first job green. Tightened CI to fail on importer errors; strict rerun 38867034279 pending. V09 NOT VERIFIED; candidate quarantined from distribution.
+
+## Strict import gate result — 2026-10-16
+GitHub Actions https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38867034279 concluded FAILURE as designed, at Godot GLB importer smoke step, following sparse accessor errors. This confirms candidate cannot be accepted unchanged. No production asset/deploy change; live procedural humanoid unaffected. Next experiment: re-export with dense accessors in Blender/gltf-transform or test alternate CC0 GLB, then rerun strict import.
