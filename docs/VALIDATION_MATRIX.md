@@ -23,3 +23,6 @@ Every task receipt includes source-version SHA, skill files read, specific test 
 
 ## M1.1 checkpoint — 2026-10-16
 Godot validate run 38858928498 SUCCESS; Web build 38858928342 SUCCESS; Android export 38858830484 SUCCESS; Pages deploy 38859007168 SUCCESS; Cloudflare production deployment 9819ff7e-2e51-4772-867b-8f6aaa536056 SUCCESS. Joystick, camera gesture, responsive HUD, APK installation, FPS and memory on Redmi K70 still require physical-device verification. M1.1 is DEPLOYED but not CLOSED.
+
+## Creator direct mobile feedback — 2026-10-16
+Redmi K70 Web controls: touch movement/camera verified working by Creator. Found fall-off-floor with no recovery. Code-side recovery and containment patch committed; fix requires new Web deployment and phone recheck. M1.2 room collision/furniture committed only; no interaction test. APK explicitly manual-trigger only under new Web-first policy; no routine APK run required for interim Web slices.
