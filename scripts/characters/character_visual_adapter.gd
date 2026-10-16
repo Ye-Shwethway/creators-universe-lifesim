@@ -56,9 +56,9 @@ func _ready() -> void:
     blend_space.add_blend_point(walk_node, 1.0)
     blend_tree = AnimationTree.new()
     blend_tree.name = "LocomotionTree"
-    blend_tree.anim_player = blend_tree.get_path_to(animator)
     blend_tree.tree_root = blend_space
     add_child(blend_tree)
+    blend_tree.anim_player = blend_tree.get_path_to(animator)
     blend_tree.active = true
     blend_tree.set("parameters/blend_position", 0.0)
     fallback.hide()
