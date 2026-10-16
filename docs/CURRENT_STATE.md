@@ -71,3 +71,6 @@ Creator screenshot verifies timed action started, not completion. Versioned allo
 
 ## Latest Creator device persistence verification — 2026-10-16
 Creator reports Training Box used 3 times, exited/reopened LifeSim, then used one additional time. Screenshot shows `Training Box completed (4)`. This verifies basic local usage-count save/load across the reported revisit on Redmi K70. Does not establish comprehensive world saves, storage durability against browser data clearing, schema migration or corruption handling. Web-first, Android manual-only continues.
+
+## World pose persistence slice — 2026-10-16
+Added position/yaw/pitch to existing v1 local save and restore, with safe bounds and periodic saves. Retains prior counters; schema/version unchanged. Godot validation 38862774933 SUCCESS. Web deployment source verification and Redmi K70 refresh/reopen test pending. APK remains manual-only.
