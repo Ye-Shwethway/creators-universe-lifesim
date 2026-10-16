@@ -59,3 +59,6 @@ Three landscape Redmi K70 browser screenshots were supplied, showing 3D room, ca
 
 ## M1.2 interaction deployment — 2026-10-16
 Source `d28755d0b81846ac2e11101d141520dee9f17c61`: scripts/main.gd gained nearest-object proximity check, contextual USE button and usage count with console event. Godot validate run 38860662402 SUCCESS; deployment run 38860715373 SUCCESS; Cloudflare production deployment 25c4981a-8a3d-4a29-a952-ec1cad65ab92 SUCCESS and SHA matched. M1.2 device verification for interacting/tapping is still required; no persistent event bus or saves, no APK built. Current status DEPLOYED / DEVICE PENDING.
+
+## Interaction QA and timed-action checkpoint — 2026-10-16
+Creator screenshot verifies Training Box contextual USE succeeded and incremented counter on Redmi K70. Implemented scripts/simulation/action_engine.gd plus integration into scripts/main.gd: idle/active timed action, started/completed/cancelled events, one-at-a-time guard, per-target completion count. Godot validation run 38861694481 SUCCESS. This new timed behavior itself remains untested on physical device, is session-only and does not yet persist. APK remains manual-only.
