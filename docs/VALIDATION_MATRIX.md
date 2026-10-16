@@ -98,3 +98,6 @@ CI run 38869052568 SUCCESS, runtime output `LIFESIM_HUMANOID_INSPECT skeletons=1
 
 ## M1.3 visual QA gate — 2026-10-16
 Automated isolated Blender renders for neutral/shoulder/chest/arm morph comparison added; run 38869523580 pending at checkpoint. Runtime mesh pose, animation, deformation quality and licensing not yet visually approved. Do not mark V09 complete.
+
+## M1.3 actual visual QA result — 2026-10-16
+GitHub Actions run 38869748123 SUCCESS after adding Xvfb/Mesa (prior run 38869523580 failed `Unable to open a display`). Workflow produced neutral, shouldersWider, chestPectorals, armsMuscular PNGs; artifact `humanoid-visual-qa` ID 12033236185. Downloaded and visually inspected all four images. Full human mesh is visible, but **skin highlights are heavily overexposed and morph differences are not convincingly legible** at current camera/lighting; therefore qualitative deformation/appearance gate remains OPEN. This is a visualization/test setup problem needing controlled illumination plus geometric delta measurements, not evidence that mesh/morph quality is acceptable. Candidate not published, asset/license clearance pending; no APK built.
