@@ -152,6 +152,8 @@ func _cancel_navigation() -> void:
 func _tap_destination(screen_position: Vector2) -> void:
     if paused or cam == null or player == null:
         return
+    if interact_button != null and interact_button.visible and interact_button.get_global_rect().has_point(screen_position):
+        return
     var origin: Vector3 = cam.project_ray_origin(screen_position)
     var direction: Vector3 = cam.project_ray_normal(screen_position)
     if absf(direction.y) < 0.0001:
