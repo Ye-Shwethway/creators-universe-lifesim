@@ -95,3 +95,6 @@ Godot validate 38865092817 SUCCESS; Cloudflare deploy workflow 38865152354 produ
 
 ## Latest M1.3 Creator QA — 2026-10-16
 Creator screenshot verifies procedural humanoid renders on Redmi K70 and wall darkness is significantly reduced. Visual milestone acknowledged; no claim of MakeHuman mesh, proper skeleton, smooth walk animation or measured FPS. Continue M1.3 asset research/rigged humanoid import, Web-first and APK manual-only.
+
+## Latest M1.3 asset-gate work — 2026-10-16
+Added offline GLB/glTF audit, synthetic file unit tests and GitHub workflow in source. CI asset-audit run 38866465959 reported successful test and audit steps; job overall conclusion should be read back. No genuine MakeHuman mesh or morph import has yet been tested, and procedural humanoid remains current live character. Official MPFB docs recommend GameEngine rig/material and export-copy/clean proxy; licenses of third-party add-ons require separate review. Android manual-only.
