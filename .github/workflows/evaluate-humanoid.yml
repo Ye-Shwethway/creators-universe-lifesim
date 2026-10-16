@@ -60,7 +60,8 @@ jobs:
           grep -q 'LIFESIM_HUMANOID_INSPECT' /tmp/lifesim-candidate/runtime-inspection.log
       - name: Render isolated neutral and physique QA images
         run: |
-          blender -b -t 2 --python tools/render_humanoid.py 2>&1 | tee /tmp/lifesim-candidate/render.log
+          sudo apt-get install -y xvfb libgl1-mesa-dri
+          xvfb-run -a blender -b -t 2 --python tools/render_humanoid.py 2>&1 | tee /tmp/lifesim-candidate/render.log
           test -s /tmp/lifesim-candidate/humanoid-neutral.png
           test -s /tmp/lifesim-candidate/humanoid-shoulders.png
           test -s /tmp/lifesim-candidate/humanoid-chest.png
