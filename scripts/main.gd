@@ -4,6 +4,7 @@ var cam: Camera3D
 var humanoid: LifeSimCharacterVisual
 var yaw := 0.3
 var pitch := -0.35
+var camera_distance: float = 6.0
 var paused := false
 var targets: Array[StaticBody3D] = []
 var focused: StaticBody3D
@@ -75,6 +76,7 @@ func _ready() -> void:
             _cancel_navigation()
     )
     hud.camera_dragged.connect(_orbit)
+    hud.camera_zoomed.connect(_zoom)
     hud.destination_tapped.connect(_tap_destination)
     navigation = LifeSimRoomPathfinder.new()
     _create_destination_marker()
@@ -103,7 +105,7 @@ func _physics_process(delta: float) -> void:
     player.camera_yaw = yaw
     var focus := player.global_position + Vector3.UP * 1.2
     var ray := Vector3(sin(yaw)*cos(pitch), -sin(pitch), cos(yaw)*cos(pitch))
-    var wanted: Vector3 = focus + ray * 6.0
+    var wanted: Vector3 = focus + ray * camera_distance
     var space: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
     var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(focus, wanted)
     query.exclude = [player.get_rid()]
@@ -121,6 +123,9 @@ func _physics_process(delta: float) -> void:
 func _orbit(d: Vector2) -> void:
     yaw -= d.x * 0.006
     pitch = clampf(pitch - d.y * 0.004, -1.12, -0.12)
+
+func _zoom(amount: float) -> void:
+    camera_distance = clampf(camera_distance + amount, 1.6, 9.0)
 
 func _pause() -> void:
     paused = not paused
