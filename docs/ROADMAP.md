@@ -13,15 +13,15 @@ Statuses: PLANNED → IN_PROGRESS → CODE_COMPLETE → CI_VERIFIED → DEVICE_V
 - [ ] Baseline browser console and runtime/performance diagnostics (not inferred from screenshot)
 
 ## M1 — Mobile Playable Prototype
-### M1.1 — Mobile controls + viewport [PLANNED; implement next]
+### M1.1 — Mobile controls + viewport [DEPLOYED; DEVICE VERIFICATION PENDING]
 Dependencies: M0 web runtime demonstrated; primary skill game-ui-ux; supporting godot-engineering, mobile-3d-rendering, game-quality-assurance.
 Scope:
-- [ ] Separate CharacterBody3D controller, collision floor and capsule proxy; WASD/keyboard fallback
-- [ ] Mobile landscape-friendly HUD and responsive anchors; joystick movement and second-area touch camera orbit
-- [ ] Orbit distance/pitch bounds; camera collision or obstruction strategy; reset camera button
-- [ ] Pause/settings and readable interaction hints; explicit controls for mobile touch
+- [x] Separate CharacterBody3D controller, collision floor and capsule proxy; WASD/keyboard fallback (CI verified)
+- [x] Initial touch joystick/HUD and camera drag input implemented (phone usability not yet verified)
+- [ ] Orbit pitch constrained; distance and collision avoidance/reset controls still need refinement
+- [ ] Pause toggle and help hints implemented; settings and physical-device usability pending
 - [ ] Orientation behavior documented: responsive portrait fallback vs landscape intended mode (avoid inaccessible screen)
-- [ ] No private character assets
+- [x] Procedural placeholder only; no third-party character assets added
 Acceptance: no GDScript parse errors; deterministic controller unit/smoke where possible; successful Web+APK build; no private assets; Creator on-phone reports joystick/camera usable, layout legible. Record FPS observation separately; not necessary to fabricate performance metrics.
 Deliverable: versioned Web deploy + APK artifact, screenshots/device feedback. Do not mark CLOSED from CI alone.
 
@@ -47,6 +47,14 @@ Acceptance: GLB import, actual shape keys verified, motion deformation QA, publi
 - [ ] Cloudflare Pages WASM chunk streaming route regression and cache behavior
 - [ ] Quality settings, loading/error fallback, durable build evidence
 Acceptance: all applicable V01-V12 checks satisfied or explicitly deferred with Creator approval.
+
+### M1.1 implementation evidence (2026-10-16)
+- Godot validation: https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38858928498 (success)
+- Android debug: https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38858830484 (success)
+- Web export: https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38858928342 (success)
+- Pages deployment: https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38859007168 (success)
+- Cloudflare latest production deployment 9819ff7e-2e51-4772-867b-8f6aaa536056 (success), source SHA 32a9193fcb66b330b9745c309e0caa6ff585a9a3.
+- Device joystick/camera functionality and APK installation are NOT verified. Slice remains open pending real-device feedback.
 
 ## M2 — Character Lab [PLANNED]
 Rigged customization, blend shapes, imperial measurements, safe interpolation, character profile saves and private identity review.
