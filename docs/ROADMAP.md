@@ -140,3 +140,7 @@ Sourced a candidate CC0-derived parametric humanoid GLB from nirholas/three.ws (
 
 ## Strict import gate result — 2026-10-16
 GitHub Actions https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38867034279 concluded FAILURE as designed, at Godot GLB importer smoke step, following sparse accessor errors. This confirms candidate cannot be accepted unchanged. No production asset/deploy change; live procedural humanoid unaffected. Next experiment: re-export with dense accessors in Blender/gltf-transform or test alternate CC0 GLB, then rerun strict import.
+
+### M1.3 sparse accessor recovery — 2026-10-16
+- Blender roundtrip now reconstructs candidate GLB in isolated GitHub CI, preserving reported rig and >=4 morph targets; strict Godot import passed without logged importer errors. Workflow run 38867423771 SUCCESS.
+- Original GLB was rejected; normalized output remains CI temporary and is NOT committed/deployed. Actual rig deformations, independent named physique morphs, source asset legal provenance and on-phone rendering remain to be verified before replacing procedural character. M1.3 OPEN; APK manual-only.
