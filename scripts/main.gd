@@ -142,16 +142,22 @@ func _refresh_focus() -> void:
             best = d
             nearest = item
     focused = nearest
-    interact_button.visible = focused != null
+    interact_button.visible = focused != null and action_engine.phase == "idle"
     if focused != null:
         interact_button.text = "USE: " + focused.name
 
 func _interact() -> void:
-    if paused or focused == null:
+    if paused or focused == null or action_engine.phase != "idle":
         return
     if player.global_position.distance_to(focused.global_position) > 2.4:
         return
-    var next_state: int = int(object_states.get(focused.name, 0)) + 1
-    object_states[focused.name] = next_state
-    feedback.text = focused.name + " used " + str(next_state) + " time(s)"
-    print("LIFESIM_EVENT interact target=", focused.name, " count=", next_state)
+    action_engine.start_action(focused.name)
+
+func _on_action_event(kind: String, target: String, seq: int) -> void:
+    if kind == "started":
+        feedback.text = "Using " + target + "..."
+    elif kind == "completed":
+        feedback.text = target + " completed (" + str(int(action_engine.counts.get(target, 0))) + ")"
+    elif kind == "cancelled":
+        feedback.text = target + " cancelled"
+    print("LIFESIM_EVENT ", kind, " target=", target, " seq=", seq)
