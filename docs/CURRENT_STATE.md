@@ -65,3 +65,6 @@ Creator screenshot verifies Training Box contextual USE succeeded and incremente
 
 ## Timed-action Web deployment — 2026-10-16
 Cloudflare production deployment 76930774-8bc2-4b72-a83f-207a89dd646c SUCCESS for code commit 44699162a130e2e7d7b69d143809ff39c31095de; headless validation 38861694481 SUCCESS. This is a new version of the interaction logic. The prior Creator phone screenshot verifies the former immediate-counter interaction, not the new timed completion. Phone validation of the 1.8-second action lifecycle remains open. APK build remains manual-only.
+
+## 2026-10-16 Local save prototype
+Creator screenshot verifies timed action started, not completion. Versioned allowlisted usage counter save added with load on startup and save on completion. Godot validation run 38862100255 succeeded; Pages deploy run 38862189075 succeeded. Browser reload persistence untested. Android manual-only.
