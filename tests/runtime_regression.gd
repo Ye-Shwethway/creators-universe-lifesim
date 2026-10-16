@@ -59,12 +59,13 @@ func _execute() -> void:
     _assert(visual.animator != null and visual._has_motion(visual.selected_idle) and visual._has_motion(visual.selected_walk), "selected animation pair exists")
     _assert((visual.selected_idle == "idle_in_place" and visual.selected_walk == "walk_in_place") or (visual.selected_idle == "idle_relaxed" and visual.selected_walk == "walk_natural"), "supported clip pair selected")
     _assert(visual.selected_idle == "idle_relaxed" and visual.selected_walk == "walk_natural", "batch-03 clip pair preferred and active")
+    _assert(visual.gait_speed_verified and absf(visual.gait_reference_speed - LifeSimPlayer.WALK_SPEED) < 0.005, "measured gait metadata matches controller walk speed")
     var walk_clip: Animation = visual.animator.get_animation(visual._resolve_animation(visual.selected_walk))
     var idle_clip: Animation = visual.animator.get_animation(visual._resolve_animation(visual.selected_idle))
     _assert(walk_clip.loop_mode == Animation.LOOP_LINEAR and idle_clip.loop_mode == Animation.LOOP_LINEAR, "imported idle/walk clips enforce continuous looping")
     _assert(visual.blend_tree != null and visual.blend_tree.active, "AnimationTree active with imported rig")
     for i in 15:
-        visual.update_locomotion(0.016, 4.2)
+        visual.update_locomotion(0.016, LifeSimPlayer.WALK_SPEED)
     _assert(visual.locomotion_blend > 0.95, "walk blend rises smoothly with movement speed")
     for i in 15:
         visual.update_locomotion(0.016, 0.0)
