@@ -13,6 +13,9 @@ var joystick_id: int = -1
 var camera_id: int = -1
 var camera_start: Vector2 = Vector2.ZERO
 var camera_drag_distance: float = 0.0
+var touch_positions: Dictionary = {}
+var pinch_previous_distance: float = 0.0
+var pinching: bool = false
 var joystick_origin: Vector2 = Vector2.ZERO
 var joystick_axis: Vector2 = Vector2.ZERO
 var paused: bool = false
@@ -28,6 +31,15 @@ func _input(event: InputEvent) -> void:
     if event is InputEventScreenTouch:
         var touch := event as InputEventScreenTouch
         if touch.pressed:
+            touch_positions[touch.index] = touch.position
+            if touch_positions.size() == 2 and joystick_id == -1:
+                var positions: Array = touch_positions.values()
+                pinch_previous_distance = (positions[0] as Vector2).distance_to(positions[1] as Vector2)
+                pinching = true
+                camera_drag_distance = 1000.0
+            if pinching:
+                get_viewport().set_input_as_handled()
+                return
             if touch.position.y < 92.0 and touch.position.x > size.x - 120.0:
                 paused = not paused
                 pause_toggled.emit()
@@ -45,6 +57,16 @@ func _input(event: InputEvent) -> void:
                 camera_start = touch.position
                 camera_drag_distance = 0.0
         else:
+            touch_positions.erase(touch.index)
+            var was_pinching: bool = pinching
+            if touch_positions.size() < 2:
+                pinching = false
+                pinch_previous_distance = 0.0
+            if was_pinching:
+                if touch.index == camera_id:
+                    camera_id = -1
+                get_viewport().set_input_as_handled()
+                return
             if touch.index == joystick_id:
                 joystick_id = -1
                 joystick_axis = Vector2.ZERO
@@ -57,6 +79,16 @@ func _input(event: InputEvent) -> void:
                 camera_id = -1
     elif event is InputEventScreenDrag:
         var drag := event as InputEventScreenDrag
+        if touch_positions.has(drag.index):
+            touch_positions[drag.index] = drag.position
+        if pinching and touch_positions.size() == 2:
+            var fingers: Array = touch_positions.values()
+            var separation: float = (fingers[0] as Vector2).distance_to(fingers[1] as Vector2)
+            if pinch_previous_distance > 0.0:
+                camera_zoomed.emit((pinch_previous_distance - separation) * 0.012)
+            pinch_previous_distance = separation
+            get_viewport().set_input_as_handled()
+            return
         if drag.index == joystick_id:
             joystick_axis = ((drag.position - joystick_origin) / PAD_RADIUS).limit_length()
             movement_changed.emit(Vector2(joystick_axis.x, joystick_axis.y))
