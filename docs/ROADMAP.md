@@ -106,3 +106,6 @@ Added `scripts/persistence/save_manager.gd` schema v1 allowlisted interaction co
 ### World pose save extension — 2026-10-16
 - Implemented v1 backward-compatible `world` field storing bounded player location and orbit yaw/pitch, retaining existing action_counts; automatic save every 3 seconds and on interaction completion/scene exit. Old count-only files remain readable.
 - Godot validation run 38862774933 SUCCESS. Web production deploy latest code still pending confirmation. Device test for restore of position/camera pending. This is partial persistence, not full M3 closure. APK remains manual-only.
+
+## World pose save deployment verified — 2026-10-16
+Godot validate run 38862774933 SUCCESS. Cloudflare deploy run 38862907783 SUCCESS, Cloudflare deployment 81cbaf4a-23d5-4a34-a58c-139554497bd3 production/success at commit 9f8caa8bfa5ab1ff9918e327c4602d96218f18f2. Position/camera restore across reload is NOT phone-verified; old count-only save compatibility implemented but not regression-tested on physical device. APK manual-only.
