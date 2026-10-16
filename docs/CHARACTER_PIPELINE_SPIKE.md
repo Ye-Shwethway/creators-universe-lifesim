@@ -25,3 +25,13 @@ https://static.makehumancommunity.org/relatedsystems/godot/tomcat/tomcat3.html
 ## Decision
 MakeHuman: **candidate approved for research only**, not production acceptance.
 No official asset model obtained, no blend shapes tested, no runtime test performed.
+
+## M1.3 research/tooling implementation — 2026-10-16
+Official MPFB export documentation recommends GameEngine materials and GameEngine rig for external engines, and preparing character geometry via export copy or baking/proxy workflows. Godot officially recommends glTF 2.0 (.glb/.gltf) for mesh + skin + animation transfer. See:
+- https://static.makehumancommunity.org/mpfb/docs/exporting/index.html
+- https://github.com/godotengine/godot-docs/blob/master/tutorials/assets_pipeline/importing_3d_scenes/available_formats.rst
+- https://github.com/makehumancommunity/mpfb2/blob/master/LICENSE.md
+
+Added `tools/audit_gltf.py`, test fixtures in `tests/test_gltf_audit.py`, and `.github/workflows/asset-audit.yml`. These check GLB/glTF metadata for linked skins, joint counts, animation count and morph targets. **Limitations:** metadata audit cannot certify skin deformation quality, license provenance, usable shoulder/chest/arm/waist morph controls, visual fidelity, animations, or real Godot scene import. A model is only accepted after a real MPFB-generated GLB is sourced, imported and rendered on Web.
+
+Next execution: identify and produce CC0-only generic adult humanoid using MakeHuman core assets through MPFB/Blender with GameEngine rig and materials; export and evaluate actual GLB; keep existing procedural humanoid until it passes. No private Darian media.
