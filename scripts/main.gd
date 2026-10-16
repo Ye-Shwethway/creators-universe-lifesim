@@ -10,6 +10,7 @@ var object_states: Dictionary = {}
 var interact_button: Button
 var feedback: Label
 var action_engine: LifeSimActionEngine
+var save_elapsed: float = 0.0
 
 func _ready() -> void:
     var ground := StaticBody3D.new()
@@ -62,11 +63,20 @@ func _ready() -> void:
     add_child(action_engine)
     action_engine.action_event.connect(_on_action_event)
     action_engine.counts = LifeSimSaveManager.read_counts()
+    var restored: Dictionary = LifeSimSaveManager.read_world()
+    if not restored.is_empty():
+        player.global_position = restored["position"]
+        yaw = restored["yaw"]
+        pitch = restored["pitch"]
     _setup_interaction_ui(layer)
 
 func _physics_process(delta: float) -> void:
     if paused: return
     action_engine.advance(delta)
+    save_elapsed += delta
+    if save_elapsed >= 3.0:
+        save_elapsed = 0.0
+        _save_world()
     _refresh_focus()
     player.camera_yaw = yaw
     var focus := player.global_position + Vector3.UP * 1.2
@@ -158,9 +168,16 @@ func _on_action_event(kind: String, target: String, seq: int) -> void:
     if kind == "started":
         feedback.text = "Using " + target + "..."
     elif kind == "completed":
-        if not LifeSimSaveManager.write_counts(action_engine.counts):
+        if not _save_world():
             push_warning("LifeSim local save failed")
         feedback.text = target + " completed (" + str(int(action_engine.counts.get(target, 0))) + ")"
     elif kind == "cancelled":
         feedback.text = target + " cancelled"
     print("LIFESIM_EVENT ", kind, " target=", target, " seq=", seq)
+
+func _save_world() -> bool:
+    return LifeSimSaveManager.write_world(action_engine.counts, player.global_position, yaw, pitch)
+
+func _exit_tree() -> void:
+    if action_engine != null and player != null:
+        _save_world()
