@@ -201,3 +201,13 @@ Creator requested actual test. SHA-256 verified `man-02/model.glb` dc744bf37d292
 
 ## M1.3 Creator screenshot gait QA and pinch/loop fix — 2026-10-16
 Creator tested man-02 on Redmi K70 Chrome and supplied four screenshots: model is visible and playable but severe wide arm/leg gait, abnormal joints, foot slide, and frozen raised-foot appearance after 1.1-second walk clip. This is negative DEVICE evidence for animation quality (gate OPEN). Engine forced imported idle/walk Animation.LOOP_LINEAR at runtime; connected two-finger pinch gesture to adjustable collision-aware camera distance (1.6–9.0 units), with gesture suppression of accidental tap-to-move. Godot validate runs 38880252665 and 38880344097 successful, including explicit animation loop assertions. Web deploy run 38880403354 SUCCESS; Cloudflare deployment 64c88aaf-7eee-4895-bf7f-877ad749ec0f status success for source 261c2af0b5d77432b74fa938f2bfdaf96e3d82f8. Phone verification for pinch zoom and animation looping pending; still not claiming realistic gait. Orison feedback `msg-20261016-lifesim-004-walk-quality-feedback.json` uploaded to game `handoff/to-orison/` Drive file 1qZDXlL8vOi8qqkp5hb-0cMBmtQQ2Xg0i, requested versioned batch-03 mocap-quality gait, contact, looping and visual QA. No private Darian files; APK not run.
+
+### M1.3b — Physics-owned locomotion bridge [PLANNED]
+From Creator-provided Walk Animation Research (16-10-2026):
+- [ ] CharacterBody3D owns movement/collision; rigged clips are strictly in-place.
+- [ ] Replace abrupt AnimationPlayer switching with AnimationTree idle/walk/run blending; retain animation loop and procedural fallback.
+- [ ] Track measured stride length, cycle duration, reference speed, foot-contact phases and animation licensing in a versioned metadata contract. Do not guess batch-02 measurements.
+- [ ] Match gait playback to physical character speed and tune unrealistically fast 4.2 units/second prototype walking without breaking joystick/tap navigation.
+- [ ] Make owner-only QA scene with floor grid, speed/phase readouts, slow motion and foot-slide inspection.
+- [ ] Automated rig/clip/blend tests, real-device animation and FPS gates, then batch-03 visual acceptance.
+Creator confirmed pinch zoom and animation loop controls work on phone; gait remains unacceptable. Orison ACK-005 message appears in Drive but content currently reports zero bytes, so commitment details are unverified. Latest room-fill lighting commit 9f99ac657a8ff0e499c1732d7699df44ebfd5026 lacks confirmed CI/Web deployment; do not call it released.
