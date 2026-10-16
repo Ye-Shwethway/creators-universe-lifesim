@@ -202,5 +202,5 @@ func _save_world() -> bool:
     return LifeSimSaveManager.write_world(action_engine.counts, player.global_position, yaw, pitch)
 
 func _exit_tree() -> void:
-    if action_engine != null and player != null:
+    if action_engine != null and player != null and player.is_inside_tree():
         _save_world()
