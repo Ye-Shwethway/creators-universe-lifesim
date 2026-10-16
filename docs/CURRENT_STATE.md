@@ -83,3 +83,6 @@ Creator confirmed LifeSim reopened with capsule at previous position; screenshot
 
 ## M1 camera occlusion patch — 2026-10-16
 Creator Redmi K70 feedback verifies restored avatar location on returning to web game and counter continuity (screenshot shows Training Box completed 5). Added physics raycast from avatar focus to desired chase camera point, excluding player and correcting camera position before wall clipping. Source commit 6af231af4cfb8157c7f6b38ee476cb43b4b1c070. Validate run 38863320136 SUCCESS; deployment run 38863369314 pending read-back. Physical on-device camera collision not yet verified. Web-first, APK manual-only.
+
+## Camera Web deploy verification — 2026-10-16
+GitHub deploy run 38863369314 completed SUCCESS; Cloudflare production deployment ad4bcb3b-fbc2-49fc-8ecb-776c73900275 SUCCESS for source SHA 6af231af4cfb8157c7f6b38ee476cb43b4b1c070. Camera occlusion correction is deployed, not yet Redmi K70 verified. APK intentionally not built.
