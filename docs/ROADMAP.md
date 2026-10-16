@@ -92,3 +92,6 @@ Creator provided three landscape screenshots showing the bounded room, objects, 
 - Timed reusable action engine added with idle/active, start/complete/cancel signals, per-object count and one-action-at-a-time guard; Godot headless validate run 38861694481 SUCCESS.
 - New action lifecycle is code/CI verified, not yet device verified. Game state is session-only; persistence and robust event ownership remain future work. M1.2 remains OPEN pending new Web deploy and mobile validation.
 - APK manual-only; Web-first development continues.
+
+## Timed-action Web deployment — 2026-10-16
+Cloudflare production deployment 76930774-8bc2-4b72-a83f-207a89dd646c SUCCESS for code commit 44699162a130e2e7d7b69d143809ff39c31095de; headless validation 38861694481 SUCCESS. This is a new version of the interaction logic. The prior Creator phone screenshot verifies the former immediate-counter interaction, not the new timed completion. Phone validation of the 1.8-second action lifecycle remains open. APK build remains manual-only.
