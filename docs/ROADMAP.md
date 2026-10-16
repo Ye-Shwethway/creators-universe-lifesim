@@ -102,3 +102,7 @@ Added `scripts/persistence/save_manager.gd` schema v1 allowlisted interaction co
 ### Creator browser persistence QA — 2026-10-16
 - [x] Redmi K70 browser session test: completed Training Box three times, exited/reopened game, completed once more, and UI displayed `Training Box completed (4)`; Creator screenshot supplied. Basic completed-action usage-counter persistence is DEVICE VERIFIED.
 - Full world-state persistence, migration, corruption recovery and quota eviction remain NOT verified; M3 save system not closed. Browser site-data deletion/private browsing may remove local save.
+
+### World pose save extension — 2026-10-16
+- Implemented v1 backward-compatible `world` field storing bounded player location and orbit yaw/pitch, retaining existing action_counts; automatic save every 3 seconds and on interaction completion/scene exit. Old count-only files remain readable.
+- Godot validation run 38862774933 SUCCESS. Web production deploy latest code still pending confirmation. Device test for restore of position/camera pending. This is partial persistence, not full M3 closure. APK remains manual-only.
