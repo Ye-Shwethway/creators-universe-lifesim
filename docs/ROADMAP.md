@@ -13,7 +13,7 @@ Statuses: PLANNED → IN_PROGRESS → CODE_COMPLETE → CI_VERIFIED → DEVICE_V
 - [ ] Baseline browser console and runtime/performance diagnostics (not inferred from screenshot)
 
 ## M1 — Mobile Playable Prototype
-### M1.1 — Mobile controls + viewport [DEVICE VERIFIED FOR CONTROLS; RECOVERY FIX PENDING RECHECK]
+### M1.1 — Mobile controls + viewport [DEVICE VERIFIED; NONBLOCKING UI REFINEMENTS REMAIN]
 Dependencies: M0 web runtime demonstrated; primary skill game-ui-ux; supporting godot-engineering, mobile-3d-rendering, game-quality-assurance.
 Scope:
 - [x] Separate CharacterBody3D controller, collision floor and capsule proxy; WASD/keyboard fallback (CI verified)
@@ -25,7 +25,7 @@ Scope:
 Acceptance: no GDScript parse errors; deterministic controller unit/smoke where possible; successful Web+APK build; no private assets; Creator on-phone reports joystick/camera usable, layout legible. Record FPS observation separately; not necessary to fabricate performance metrics.
 Deliverable: versioned Web deploy + APK artifact, screenshots/device feedback. Do not mark CLOSED from CI alone.
 
-### M1.2 — Interactive mini-environment [IN PROGRESS; SIMPLE COLLISION ROOM COMMITTED]
+### M1.2 — Interactive mini-environment [ROOM/COLLISIONS DEVICE VERIFIED; INTERACTION MECHANICS PENDING]
 Depends on M1.1 usability.
 - [ ] One low-poly room, walls and stable physics/collision
 - [ ] Simple furniture/prop geometry; proximity interaction focus and interact action
@@ -77,3 +77,6 @@ Every implementation slice must end with source commit SHA, selected skills, cha
 - Web build [38859675605](https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38859675605) SUCCESS.
 - Cloudflare deployment `dcaf0886-cec5-4db4-a74a-9879c3da4d4c` SUCCESS from SHA `18a5eda9204ce379d250834dd8ceb6db4679dfb6`.
 - M1.2 still IN PROGRESS: interactive object prompts/events and Creator phone fall-recovery recheck pending. Android remains manual-only.
+
+### Redmi K70 Creator QA — 2026-10-16
+Creator provided three landscape screenshots showing the bounded room, objects, joystick and multiple orbit views; reports no more floor falls and successful object contact/collision. These specific visual, boundary and collision checks are DEVICE_VERIFIED. Interaction button, proximity prompt and game-state event hooks are not implemented/tested and M1.2 remains OPEN. Android APK stays manual-only.
