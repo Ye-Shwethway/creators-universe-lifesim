@@ -116,3 +116,6 @@ Run https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38868
 
 ## M1.3 latest bone/morph names and probe — 2026-10-16
 Successful scene inspection run 38868803605: Skeleton3D 52 bones, 4 mesh instances, combined shape keys 395, 0 animation clips. Confirmed named mixamorig walking limb bones and physique morphs shouldersWider/chestPectorals/waistNarrower/armsMuscular/bodyMuscular. Added pose+set/get blend_shape_value probe; run 38869052568 running. These isolated tests do not show user-visible mesh quality. Real GLB kept outside public repo/site. Web-first; no APK.
+
+## M1.3 real Godot pose/morph assignment gate — 2026-10-16
+CI run 38869052568 SUCCESS, runtime output `LIFESIM_HUMANOID_INSPECT skeletons=1 bones=52 mesh_nodes=4 shape_keys=395 clips=0` and `LIFESIM_POSE_MORPH_TEST bones=4 morph_assignments=5 PASS`. Verified four mixamorig limb bones accept pose rotations and five named physique blend shapes (shouldersWider, chestPectorals, waistNarrower, armsMuscular, bodyMuscular) accept/get 0.5 values on imported MeshInstance3D. This proves runtime setters, NOT realistic visual deformation or animation playback; 0 animation clips, license clearance and Web device acceptance still open. Candidate isolated in CI, live procedural humanoid remains. Web-first, APK manual-only.
