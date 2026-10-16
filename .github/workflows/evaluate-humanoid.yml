@@ -58,6 +58,21 @@ jobs:
             exit 1
           fi
           grep -q 'LIFESIM_HUMANOID_INSPECT' /tmp/lifesim-candidate/runtime-inspection.log
+      - name: Render isolated neutral and physique QA images
+        run: |
+          blender -b -t 2 --python tools/render_humanoid.py 2>&1 | tee /tmp/lifesim-candidate/render.log
+          test -s /tmp/lifesim-candidate/humanoid-neutral.png
+          test -s /tmp/lifesim-candidate/humanoid-shoulders.png
+          test -s /tmp/lifesim-candidate/humanoid-chest.png
+          test -s /tmp/lifesim-candidate/humanoid-arms.png
+      - name: Upload isolated character renders for visual inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: humanoid-visual-qa
+          path: /tmp/lifesim-candidate/humanoid-*.png
+          if-no-files-found: ignore
+          retention-days: 2
       - name: Upload audit report only
         if: always()
         uses: actions/upload-artifact@v4
