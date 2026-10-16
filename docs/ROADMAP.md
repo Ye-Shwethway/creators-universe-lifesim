@@ -118,3 +118,10 @@ Creator verified avatar location restores across browser revisit and observed Tr
 
 ## Camera Web deploy verification — 2026-10-16
 GitHub deploy run 38863369314 completed SUCCESS; Cloudflare production deployment ad4bcb3b-fbc2-49fc-8ecb-776c73900275 SUCCESS for source SHA 6af231af4cfb8157c7f6b38ee476cb43b4b1c070. Camera occlusion correction is deployed, not yet Redmi K70 verified. APK intentionally not built.
+
+### M1.3 visible humanoid bridge — 2026-10-16
+- Creator feedback: camera movement improved; two walls appear black/unlit, requests a recognizable human character. This is visual feedback, not performance certification.
+- Added source-authored procedural humanoid with head/torso/arms/legs and basic alternating limb swing; replaced capsule mesh visual without changing existing CharacterBody3D collision, interactions or local saves.
+- Improved ambient illumination and made procedural wall materials two-sided to mitigate back-face darkness. Does not yet establish correct physical lighting across all views.
+- Godot validate run 38865092817 SUCCESS. Cloudflare deploy run 38865152354 dispatched; runtime visual/device verification pending.
+- M1.3 remains IN PROGRESS. This is NOT a rigged MakeHuman character and has no authored physique morph targets; MakeHuman/Blender/GLB licensing and rigging acceptance gates still open. Android build manual-only.
