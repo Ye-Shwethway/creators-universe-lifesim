@@ -89,3 +89,6 @@ Added Godot PackedScene instantiation and enumeration of Skeleton3D, bones, Mesh
 
 ## Instantiated Godot humanoid gate VERIFIED — 2026-10-16
 Run https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38868131012 completed SUCCESS. Godot scene actually loaded/instantiated after Blender normalization, runtime stdout: `LIFESIM_HUMANOID_INSPECT skeletons=1 bones=52 mesh_nodes=4 shape_keys=395 clips=0`. These are summed shape keys across mesh instances, not 395 unique editable body attributes. Thus structural rig/shape imports PASS; **zero imported animation clips**, and individual physique controls/body deformation, legal redistribution, and mobile Web performance remain UNVERIFIED. Candidate still only in isolated CI, not shipped. Next: animation retarget/author idle-walk and pose/morph semantic audit; preserve existing visual until gates passed. APK manual-only.
+
+## M1.3 semantic bone and morph gate — 2026-10-16
+Run 38868803605 SUCCESS and logs contain 52 named mixamorig bones plus named physique shape keys. 395 shape keys aggregated across 4 meshes, not 395 independent physiques. New isolated pose rotations / morph value round-trip gate run 38869052568 pending. Animation clips=0; no visual/deformation/FPS/license proof. V09 remains PARTIAL.
