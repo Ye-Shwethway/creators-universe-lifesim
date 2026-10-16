@@ -5,6 +5,10 @@ class_name LifeSimCharacterVisual
 const APPROVED_SCENE: String = "res://assets/public/approved/humanoid.glb"
 const IDLE: String = "idle_in_place"
 const WALK: String = "walk_in_place"
+const BATCH03_IDLE: String = "idle_relaxed"
+const BATCH03_WALK: String = "walk_natural"
+var selected_idle: String = IDLE
+var selected_walk: String = WALK
 var fallback: ProceduralHumanoid
 var rig_root: Node3D
 var animator: AnimationPlayer
@@ -37,13 +41,16 @@ func _ready() -> void:
     rig_root = instance as Node3D
     add_child(rig_root)
     animator = _find_animator(rig_root)
-    if animator == null or not _has_motion(IDLE) or not _has_motion(WALK):
+    if animator != null and _has_motion(BATCH03_IDLE) and _has_motion(BATCH03_WALK):
+        selected_idle = BATCH03_IDLE
+        selected_walk = BATCH03_WALK
+    if animator == null or not _has_motion(selected_idle) or not _has_motion(selected_walk):
         rig_root.queue_free()
         rig_root = null
         animator = null
         push_warning("LifeSim character missing idle/walk; keeping fallback")
         return
-    for motion in [IDLE, WALK]:
+    for motion in [selected_idle, selected_walk]:
         var animation: Animation = animator.get_animation(_resolve_animation(motion))
         if animation != null:
             animation.loop_mode = Animation.LOOP_LINEAR
@@ -52,9 +59,9 @@ func _ready() -> void:
     blend_space.min_space = 0.0
     blend_space.max_space = 1.0
     var idle_node := AnimationNodeAnimation.new()
-    idle_node.animation = _resolve_animation(IDLE)
+    idle_node.animation = _resolve_animation(selected_idle)
     var walk_node := AnimationNodeAnimation.new()
-    walk_node.animation = _resolve_animation(WALK)
+    walk_node.animation = _resolve_animation(selected_walk)
     blend_space.add_blend_point(idle_node, 0.0)
     blend_space.add_blend_point(walk_node, 1.0)
     blend_tree = AnimationTree.new()
@@ -67,7 +74,7 @@ func _ready() -> void:
     _load_gait_metadata()
     fallback.hide()
     using_asset = true
-    active_motion = _resolve_animation(IDLE)
+    active_motion = _resolve_animation(selected_idle)
 
 func _load_gait_metadata() -> void:
     gait_reference_speed = 0.0
@@ -86,6 +93,10 @@ func _load_gait_metadata() -> void:
     var cycle: float = float(data.get("cycle_duration_s", 0.0))
     if not bool(data.get("measured", false)) or stride <= 0.0 or cycle <= 0.0:
         return
+    # Measured metadata must describe the actually imported walk clip.
+    if String(data.get("animation_clip", "")) != selected_walk:
+        push_warning("Gait metadata clip mismatch; refusing stride calibration")
+        return
     gait_reference_speed = stride / cycle
     gait_speed_verified = gait_reference_speed > 0.0
 
@@ -95,7 +106,8 @@ func gait_debug() -> Dictionary:
         "blend": locomotion_blend,
         "reference_speed": gait_reference_speed if gait_speed_verified else BLEND_REFERENCE_SPEED,
         "calibrated": gait_speed_verified,
-        "animation": active_motion
+        "animation": active_motion,
+        "selected_walk": selected_walk
     }
 
 func _find_animator(root: Node) -> AnimationPlayer:
@@ -138,7 +150,7 @@ func update_locomotion(delta: float, horizontal_speed: float) -> void:
     blend_tree.set("parameters/blend_position", locomotion_blend)
     # Only synchronize clip tempo when the asset producer supplied measured gait data.
     # 0.5x..2x avoids extreme poses; a metadata omission never fabricates stride.
-    active_motion = _resolve_animation(WALK if locomotion_blend >= 0.5 else IDLE)
+    active_motion = _resolve_animation(selected_walk if locomotion_blend >= 0.5 else selected_idle)
 
 func visual_mode() -> String:
     return "rigged" if using_asset else "procedural"
