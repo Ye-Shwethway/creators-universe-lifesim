@@ -125,3 +125,6 @@ Blender script to capture neutral and three physique morph comparison poses comm
 
 ## M1.3 actual visual QA result — 2026-10-16
 GitHub Actions run 38869748123 SUCCESS after adding Xvfb/Mesa (prior run 38869523580 failed `Unable to open a display`). Workflow produced neutral, shouldersWider, chestPectorals, armsMuscular PNGs; artifact `humanoid-visual-qa` ID 12033236185. Downloaded and visually inspected all four images. Full human mesh is visible, but **skin highlights are heavily overexposed and morph differences are not convincingly legible** at current camera/lighting; therefore qualitative deformation/appearance gate remains OPEN. This is a visualization/test setup problem needing controlled illumination plus geometric delta measurements, not evidence that mesh/morph quality is acceptable. Candidate not published, asset/license clearance pending; no APK built.
+
+## Character engine adapter slice — 2026-10-16
+Implemented scripts/characters/character_visual_adapter.gd with procedural visual fallback, optional approved rigged scene loading, idle/walk animation switches. Main player physics, collision, action engine and v1 save unchanged. Godot validation run 38872498839 SUCCESS. Source branch has no approved Orison model asset and no private Darian references. Need Web deploy + Creator runtime feedback before visual slice device close. APK manual-only.
