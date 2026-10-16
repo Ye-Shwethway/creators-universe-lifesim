@@ -92,3 +92,6 @@ Run https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38868
 
 ## M1.3 semantic bone and morph gate — 2026-10-16
 Run 38868803605 SUCCESS and logs contain 52 named mixamorig bones plus named physique shape keys. 395 shape keys aggregated across 4 meshes, not 395 independent physiques. New isolated pose rotations / morph value round-trip gate run 38869052568 pending. Animation clips=0; no visual/deformation/FPS/license proof. V09 remains PARTIAL.
+
+## M1.3 real Godot pose/morph assignment gate — 2026-10-16
+CI run 38869052568 SUCCESS, runtime output `LIFESIM_HUMANOID_INSPECT skeletons=1 bones=52 mesh_nodes=4 shape_keys=395 clips=0` and `LIFESIM_POSE_MORPH_TEST bones=4 morph_assignments=5 PASS`. Verified four mixamorig limb bones accept pose rotations and five named physique blend shapes (shouldersWider, chestPectorals, waistNarrower, armsMuscular, bodyMuscular) accept/get 0.5 values on imported MeshInstance3D. This proves runtime setters, NOT realistic visual deformation or animation playback; 0 animation clips, license clearance and Web device acceptance still open. Candidate isolated in CI, live procedural humanoid remains. Web-first, APK manual-only.
