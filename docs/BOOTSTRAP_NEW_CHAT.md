@@ -17,3 +17,6 @@ Godot 4 + GDScript; mobile-first; browser-first playability with native Android 
 
 ## Session handoff template
 Task | branch/commit | milestone | changed paths | test results | asset classifications | blockers | next step.
+
+## Active development preference
+Creator approved Web-first iteration on 2026-10-16. Test and deploy Web routinely; **do not trigger Android APK builds automatically**. Preserve manual `build-android.yml` for later cross-platform validation. Redmi K70 controls work, but floor fall/recovery bug was reported. Consult ROADMAP for latest slice status and CURRENT_STATE for verification evidence.
