@@ -32,3 +32,11 @@ Direct workflow dispatch + bounded polling results:
 
 ## Cloudflare integration checkpoint — 2026-10-16
 Created Direct Upload Pages project creators-universe-lifesim and linked custom hostname lifesim.drthorne.uk, with proxied CNAME. Cloudflare Git-source connect failed error 8000011, so use GitHub Actions+Wrangler workflow. Deployment workflow committed, but GitHub repo has no CLOUDFLARE_API_TOKEN/CLOUDFLARE_ACCOUNT_ID secrets and no Pages deployment yet; actual site is not live. See docs/DEPLOYMENT_CLOUDFLARE.md. Domain status pending last read.
+
+## First Cloudflare production deployment — 2026-10-16
+- GitHub secrets CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID verified by metadata; values not read.
+- First deployment run 38857787491 failed: Cloudflare Pages rejects single asset larger than 25 MiB. Godot index.wasm size 39,514,754 bytes.
+- Added 12 MiB WASM chunk splitting and Pages Function that streams /index.wasm from 4 static chunks, avoiding 25 MiB asset limit.
+- Retry run 38857984698 completed SUCCESS. Wrangler compiled functions, uploaded 13 files, and deployed production URL https://6e38abe1.creators-universe-lifesim.pages.dev.
+- Cloudflare Pages API reported deployment 6e38abe1-e965-4660-ae81-f4c46d69d516 production/success; custom domain lifesim.drthorne.uk active, verification active.
+- Direct HTTPS fetch of custom domain from available tools was not successful due to tool-side hostname resolution/access; mobile WebGL2 runtime and route-level streamed WASM have NOT been independently verified. Do not mark device/browser milestone closed.
