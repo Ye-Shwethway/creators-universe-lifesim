@@ -29,3 +29,6 @@ Direct workflow dispatch + bounded polling results:
 - Android initially failed on deprecated setup-android v3 'tools', then missing sdkmanager after removal, then ETC2/ASTC property path. Corrected using setup-android@v4 and [rendering] textures/vram_compression/import_etc2_astc=true.
 - Android run 38856054864: completed success; artifact lifesim-android-debug, 28,017,343 bytes, sha256:e76f68cd87c76ee15b81df80658905029f6b680cb0e63b4f24dc379e19b8ee28.
 - These artifacts are short retention. **CI success proves export, not successful install/launch, signed package inspection, frame rate or phone browser runtime**. M0 physical device gate remains open.
+
+## Cloudflare integration checkpoint — 2026-10-16
+Created Direct Upload Pages project creators-universe-lifesim and linked custom hostname lifesim.drthorne.uk, with proxied CNAME. Cloudflare Git-source connect failed error 8000011, so use GitHub Actions+Wrangler workflow. Deployment workflow committed, but GitHub repo has no CLOUDFLARE_API_TOKEN/CLOUDFLARE_ACCOUNT_ID secrets and no Pages deployment yet; actual site is not live. See docs/DEPLOYMENT_CLOUDFLARE.md. Domain status pending last read.
