@@ -1,0 +1,14 @@
+schema_version: 1
+project: creators-universe-lifesim
+selection: one_primary_up_to_three_supporting_skills
+profiles:
+  architecture: {primary: game-architecture, supporting: [godot-engineering, life-simulation-ai, game-quality-assurance]}
+  gameplay: {primary: life-simulation-ai, supporting: [game-architecture, game-ui-ux, game-quality-assurance]}
+  character: {primary: character-animation, supporting: [mobile-3d-rendering, asset-pipeline, game-quality-assurance]}
+  visual: {primary: mobile-3d-rendering, supporting: [character-animation, game-ui-ux, game-quality-assurance]}
+  ui: {primary: game-ui-ux, supporting: [godot-engineering, mobile-3d-rendering, game-quality-assurance]}
+  dependency: {primary: godot-engineering, supporting: [build-release, game-quality-assurance]}
+  export: {primary: build-release, supporting: [godot-engineering, asset-pipeline, game-quality-assurance]}
+  assets: {primary: asset-pipeline, supporting: [character-animation, mobile-3d-rendering, game-quality-assurance]}
+  tests: {primary: game-quality-assurance, supporting: [build-release, game-architecture]}
+required_receipt_fields: [task, selected_profile, primary_skill, supporting_skills, sources_read, plan, validation, observed_results, unknowns]
