@@ -134,3 +134,6 @@ Creator screenshot on Redmi K70 confirms procedural humanoid visually present an
 
 ### M1.3 Asset pipeline acceptance tooling — 2026-10-16
 Added tools/audit_gltf.py, tests/test_gltf_audit.py and asset-audit workflow. This program checks GLB/glTF metadata (skin connections, joint counts, animations, morph targets); synthetic format unit tests and audit job steps succeeded in GitHub run 38866465959. **No actual MakeHuman/MPFB model was generated or imported**. Next: reproduce CC0 MPFB GameEngine rig/material, GLB export and actual Godot render. Do not promote M1.3 to closed. Web-first, APK manual-only.
+
+### M1.3 actual MakeHuman-derived GLB experiment — 2026-10-16
+Sourced a candidate CC0-derived parametric humanoid GLB from nirholas/three.ws (52-bone / 122 morphs per vendor description). Download and metadata audit passed in isolated GitHub workflow run 38866915144, but Godot importer emitted many `Sparse indices buffer view size did not exactly match the expected size` errors while job incorrectly returned success. This candidate is NOT production-approved. Updated `.github/workflows/evaluate-humanoid.yml` to fail on Godot import errors and re-ran 38867034279. Existing procedural humanoid stays live; real asset import gate remains OPEN. No APK triggered.
