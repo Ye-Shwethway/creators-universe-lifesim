@@ -70,3 +70,10 @@ NPC schedules, conflicts, relationships, Direct/Guided/Autonomous modes, persist
 
 ## Milestone sync contract
 Every implementation slice must end with source commit SHA, selected skills, changed files, tests and Actions run URLs, Web deploy ID where applicable, device evidence, asset/privacy outcome, unresolved issues, and explicit status. In SAME completion pass, reconcile docs/ROADMAP.md, docs/CURRENT_STATE.md, docs/VALIDATION_MATRIX.md, and any relevant ADR / skill / deployment docs; read-back all updated files. If any write fails, slice remains OPEN and the mismatch must be reported; never claim cross-file sync without remote read-back. Update new-chat bootstrap when entrypoints or handoff rules change. Prior historical checkpoint entries may remain as history, but current state must clearly supersede them.
+
+### M1.2 Web-first evidence — 2026-10-16
+- Character fall recovery and x/z world bounds, four solid room walls and two procedural furniture boxes committed.
+- Godot validation [38859675610](https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38859675610) SUCCESS.
+- Web build [38859675605](https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38859675605) SUCCESS.
+- Cloudflare deployment `dcaf0886-cec5-4db4-a74a-9879c3da4d4c` SUCCESS from SHA `18a5eda9204ce379d250834dd8ceb6db4679dfb6`.
+- M1.2 still IN PROGRESS: interactive object prompts/events and Creator phone fall-recovery recheck pending. Android remains manual-only.
