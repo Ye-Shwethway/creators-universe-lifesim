@@ -31,8 +31,12 @@ jobs:
         run: |
           mkdir -p assets/public/candidates
           cp /tmp/lifesim-candidate/humanoid.glb assets/public/candidates/humanoid.glb
-          godot --headless --path . --editor --quit
+          godot --headless --path . --editor --quit 2>&1 | tee /tmp/lifesim-candidate/godot-import.log
           test -d .godot/imported
+          if grep -Eiq "ERROR:|Parse Error|Failed to import|Sparse indices buffer view size" /tmp/lifesim-candidate/godot-import.log; then
+            echo "Godot import reported errors; candidate REJECTED for production"
+            exit 1
+          fi
       - name: Upload audit report only
         if: always()
         uses: actions/upload-artifact@v4
