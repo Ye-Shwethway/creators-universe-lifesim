@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "asset": "batch-02/man-02",
+  "measured": false,
+  "stride_length_m": 0,
+  "cycle_duration_s": 1.1,
+  "root_motion": false,
+  "forward_axis": "+Z",
+  "note": "Uncalibrated baseline. Set measured true only after foot-contact and full-cycle stride audit of the final refined animation; values in meters."
+}
