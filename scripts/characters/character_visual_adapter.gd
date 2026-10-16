@@ -36,6 +36,10 @@ func _ready() -> void:
         animator = null
         push_warning("LifeSim character missing idle/walk; keeping fallback")
         return
+    for motion in [IDLE, WALK]:
+        var animation: Animation = animator.get_animation(_resolve_animation(motion))
+        if animation != null:
+            animation.loop_mode = Animation.LOOP_LINEAR
     fallback.hide()
     using_asset = true
     _switch_motion(IDLE)
