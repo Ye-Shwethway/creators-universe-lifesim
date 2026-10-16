@@ -9,3 +9,6 @@ This initial commit is a project skeleton and documentation, NOT a completed pla
 Next: inspect CI workflow outcomes; fix any export/SDK configuration; produce minimal playable M1 scene with touch controls. Never mark M0 closed until actual Web and APK artifacts have been checked and a phone runtime test is recorded.
 
 Current risks: Godot version/export template compatibility; Android SDK provisioning on CI; WebGL2 browser performance; absent rigged/morphable character assets; no unauthorized public distribution of private art.
+
+## Research and skills follow-up
+2026-10-16: Added 9 task-specific skill contracts, registry, skill execution gate and official-doc research baseline. Existing Godot 4.3 CI is still provisional and unverified; no gameplay implementation or green dual-platform build claimed. Next: engine-version decision, validate CI, repair export workflow, then prototype under selected skills.
