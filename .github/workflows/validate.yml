@@ -19,3 +19,7 @@ jobs:
         run: godot --headless --path . --editor --quit
       - name: Test project startup
         run: godot --headless --path . --quit-after 3
+      - name: CI-only action/save/character regression
+        run: |
+          godot --headless --path . --script res://tests/runtime_regression.gd 2>&1 | tee /tmp/lifesim-regression.log
+          grep -q 'LIFESIM_QA_RESULT failures=0' /tmp/lifesim-regression.log
