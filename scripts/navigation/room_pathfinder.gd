@@ -40,7 +40,33 @@ func route(from: Vector3, destination: Vector3) -> Array[Vector3]:
     var ids: Array[Vector2i] = grid.get_id_path(start, finish)
     if ids.is_empty():
         return output
+    var raw: Array[Vector3] = []
+    raw.append(Vector3(from.x, 0.05, from.z))
     for id in ids:
-        output.append(_world(id))
-    output.append(Vector3(destination.x, 0.05, destination.z))
+        raw.append(_world(id))
+    raw.append(Vector3(destination.x, 0.05, destination.z))
+    # String-pull grid path into the furthest safe visible waypoint.
+    # Samples have subcell spacing and use the same clearance-solid grid.
+    var anchor: int = 0
+    while anchor < raw.size() - 1:
+        var farthest: int = anchor + 1
+        for candidate in range(raw.size() - 1, anchor, -1):
+            if _clear_segment(raw[anchor], raw[candidate]):
+                farthest = candidate
+                break
+        output.append(raw[farthest])
+        anchor = farthest
     return output
+
+func _clear_segment(a: Vector3, b: Vector3) -> bool:
+    var dist: float = a.distance_to(b)
+    var steps: int = maxi(1, ceili(dist / 0.1))
+    for i in range(steps + 1):
+        var t: float = float(i) / float(steps)
+        var sample: Vector3 = a.lerp(b, t)
+        if absf(sample.x) > LIMIT or absf(sample.z) > LIMIT:
+            return false
+        var cell: Vector2i = _cell(sample)
+        if grid.is_point_solid(cell):
+            return false
+    return true
