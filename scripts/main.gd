@@ -54,7 +54,8 @@ func _ready() -> void:
     cam.current = true
     var sun := DirectionalLight3D.new()
     sun.rotation_degrees = Vector3(-48, -35, 0)
-    sun.light_energy = 0.85
+    sun.light_energy = 1.1
+    sun.shadow_enabled = false
     add_child(sun)
     var ambient := WorldEnvironment.new()
     var environment := Environment.new()
@@ -65,6 +66,13 @@ func _ready() -> void:
     environment.ambient_light_energy = 0.8
     ambient.environment = environment
     add_child(ambient)
+    var fill := OmniLight3D.new()
+    fill.name = "RoomFill"
+    fill.position = Vector3(0.0, 2.55, 0.0)
+    fill.light_energy = 0.8
+    fill.omni_range = 12.0
+    fill.shadow_enabled = false
+    add_child(fill)
     var layer := CanvasLayer.new()
     add_child(layer)
     var hud := LifeSimMobileControls.new()
