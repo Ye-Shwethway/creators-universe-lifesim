@@ -18,3 +18,6 @@ Added ADR-0001, ADR-0002, character assets assessment and V01–V12 validation m
 
 ## Execution update — 2026-10-16
 Updated validate/Web/Android workflows and project.godot from Godot 4.3 to 4.7-stable source references, plus Android 35/NDK r28b provisional SDK setup. See docs/CHARACTER_PIPELINE_SPIKE.md for MakeHuman research route. **These changes are committed but CI/Web/APK outcomes have not been verified.** V01–V06 remain PENDING until external run logs/artifact inspection and Redmi K70 testing. Debug signing and Android export settings may still require correction.
+
+## CI pin follow-up — 2026-10-16
+Verified upstream Godot 4.7.2-stable exists; updated project and all three CI workflows to the matching 4.7.2 editor/template version. Android workflow now generates a disposable debug key and supplies Godot debug keystore environment variables. **No completed GitHub Actions run has been verified in this session; no installable APK or working Web artifact is claimed.** Review action logs and export preset Android signing/toolchain on the next validation pass; device tests remain pending.
