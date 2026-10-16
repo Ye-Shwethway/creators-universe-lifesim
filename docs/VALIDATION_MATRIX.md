@@ -38,3 +38,6 @@ Proximity button and state counter implemented and passed headless Godot validat
 
 ## Interaction-to-action transition — 2026-10-16
 Creator screenshot demonstrates Training Box `USE` button and one successful counter update on Redmi K70 (prior simple counter version). Timed action engine subsequently passed headless validation run 38861694481. Exactly-once after timed completion, pause semantics, cancel flow and device experience remain to verify; do not equate headless success with user-device validation. APK intentionally not built.
+
+## Timed-action Web deployment — 2026-10-16
+Cloudflare production deployment 76930774-8bc2-4b72-a83f-207a89dd646c SUCCESS for code commit 44699162a130e2e7d7b69d143809ff39c31095de; headless validation 38861694481 SUCCESS. This is a new version of the interaction logic. The prior Creator phone screenshot verifies the former immediate-counter interaction, not the new timed completion. Phone validation of the 1.8-second action lifecycle remains open. APK build remains manual-only.
