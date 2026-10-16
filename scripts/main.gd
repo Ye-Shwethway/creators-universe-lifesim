@@ -61,6 +61,7 @@ func _ready() -> void:
     action_engine = LifeSimActionEngine.new()
     add_child(action_engine)
     action_engine.action_event.connect(_on_action_event)
+    action_engine.counts = LifeSimSaveManager.read_counts()
     _setup_interaction_ui(layer)
 
 func _physics_process(delta: float) -> void:
@@ -157,6 +158,8 @@ func _on_action_event(kind: String, target: String, seq: int) -> void:
     if kind == "started":
         feedback.text = "Using " + target + "..."
     elif kind == "completed":
+        if not LifeSimSaveManager.write_counts(action_engine.counts):
+            push_warning("LifeSim local save failed")
         feedback.text = target + " completed (" + str(int(action_engine.counts.get(target, 0))) + ")"
     elif kind == "cancelled":
         feedback.text = target + " cancelled"
