@@ -39,6 +39,29 @@ jobs:
           godot --headless --path . --export-release "Web" build/web/index.html
           test -s build/web/index.html
           test -s build/web/index.wasm
+      - name: Split WebAssembly into Pages-safe assets
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          wasm = Path("build/web/index.wasm")
+          size = wasm.stat().st_size
+          print(f"Original WASM size: {size} bytes")
+          chunks = Path("build/web/wasm-chunks")
+          chunks.mkdir(parents=True, exist_ok=True)
+          names = []
+          with wasm.open("rb") as source:
+              index = 0
+              while block := source.read(12 * 1024 * 1024):
+                  name = f"part-{index:03d}.bin"
+                  (chunks / name).write_bytes(block)
+                  names.append(name)
+                  index += 1
+          (chunks / "manifest.json").write_text(json.dumps({"parts": names, "total_bytes": size}))
+          wasm.unlink()
+          assert all((chunks / name).stat().st_size <= 25 * 1024 * 1024 for name in names)
+          print(f"Split WASM into {len(names)} chunks")
+          PY
       - name: Publish to Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
