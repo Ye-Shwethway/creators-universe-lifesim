@@ -7,8 +7,8 @@ No checks marked PASS without direct evidence.
 | V01 Godot engine pin | exact patch URL, hash, matched templates and config | PENDING |
 | V02 Headless import | successful command log for full project | CI PASS — validate run 38855603349 |
 | V03 Script smoke | zero parser errors plus smoke startup | CI PASS — validate run 38855603349 |
-| V04 Web build | archive manifest + successful export + HTTP served smoke | PARTIAL: Web export artifact produced, browser/HTTP smoke not verified |
-| V05 Web on phone | Redmi K70 Chrome opens; touch, input, stability | PENDING |
+| V04 Web build | archive manifest + successful export + HTTP served smoke | PARTIAL: export CI success and Cloudflare production success; user screenshot demonstrates rendered app; direct HTTP/console checks not separately captured |
+| V05 Web on phone | Redmi K70 Chrome opens; touch, input, stability | PARTIAL: Creator screenshot 2026-10-16 shows 3D capsule/floor rendered on lifesim.drthorne.uk; interactive controls/performance not yet tested |
 | V06 Android APK | signed installable arm64 build + install/launch log | PARTIAL: APK artifact produced; signing/install/launch not device-verified |
 | V07 Gameplay determinism | same seed/replay gives identical state | PENDING |
 | V08 Save integrity | write/load/migrate/corruption detection tests | PENDING |
