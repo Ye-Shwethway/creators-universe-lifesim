@@ -131,3 +131,6 @@ Godot validate 38865092817 SUCCESS; Cloudflare deploy workflow 38865152354 produ
 
 ### M1.3 Creator visual QA — 2026-10-16
 Creator screenshot on Redmi K70 confirms procedural humanoid visually present and wall surfaces no longer fully black. Basic visual rendering and lighting improvement DEVICE_VERIFIED. Mesh is still procedural and not MakeHuman/rigged; animation motion/FPS not measured. Next focus real generic rigged humanoid asset sourcing/import validation.
+
+### M1.3 Asset pipeline acceptance tooling — 2026-10-16
+Added tools/audit_gltf.py, tests/test_gltf_audit.py and asset-audit workflow. This program checks GLB/glTF metadata (skin connections, joint counts, animations, morph targets); synthetic format unit tests and audit job steps succeeded in GitHub run 38866465959. **No actual MakeHuman/MPFB model was generated or imported**. Next: reproduce CC0 MPFB GameEngine rig/material, GLB export and actual Godot render. Do not promote M1.3 to closed. Web-first, APK manual-only.
