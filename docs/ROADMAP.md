@@ -147,3 +147,6 @@ GitHub Actions https://github.com/Ye-Shwethway/creators-universe-lifesim/actions
 
 ### M1.3 instantiated GLB gate — 2026-10-16
 Added tools/inspect_humanoid.gd to instantiate normalized candidate as a PackedScene in Godot and enumerate actual Skeleton3D nodes/bone counts, MeshInstance3D blend shapes and AnimationPlayer clips; acceptance script rejects absent rigs and <4 shape keys. Updated isolated evaluate-humanoid workflow to run the check. Run 38868131012 dispatched and awaiting result at checkpoint. No model deployed. Web-first/APK manual-only.
+
+## Instantiated Godot humanoid gate VERIFIED — 2026-10-16
+Run https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38868131012 completed SUCCESS. Godot scene actually loaded/instantiated after Blender normalization, runtime stdout: `LIFESIM_HUMANOID_INSPECT skeletons=1 bones=52 mesh_nodes=4 shape_keys=395 clips=0`. These are summed shape keys across mesh instances, not 395 unique editable body attributes. Thus structural rig/shape imports PASS; **zero imported animation clips**, and individual physique controls/body deformation, legal redistribution, and mobile Web performance remain UNVERIFIED. Candidate still only in isolated CI, not shipped. Next: animation retarget/author idle-walk and pose/morph semantic audit; preserve existing visual until gates passed. APK manual-only.
