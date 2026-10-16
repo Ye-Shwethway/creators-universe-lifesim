@@ -83,3 +83,6 @@ GitHub Actions https://github.com/Ye-Shwethway/creators-universe-lifesim/actions
 
 ## V09 GLB conversion progress — 2026-10-16
 Isolated candidate normalized by Blender and imported in Godot 4.7.2 without matched error logs: run 38867423771 SUCCESS. Metadata retains linked skin and 4+ morphs. This is an import-compatibility subgate only; rig animation, morph semantic/body quality, asset license, runtime visuals and phone FPS are NOT verified; full V09 remains PARTIAL.
+
+## M1.3 instantiated resource test — 2026-10-16
+Added Godot PackedScene instantiation and enumeration of Skeleton3D, bones, MeshInstance3D, blend shapes and AnimationPlayer clips. Run 38868131012 pending; no real-device rendering or morph deformation evidence yet. V09 still partial.
