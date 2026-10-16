@@ -12,7 +12,7 @@ Read in order: README.md → docs/BOOTSTRAP_NEW_CHAT.md → docs/ARCHITECTURE.md
 
 ## Mandatory domain skill hydration
 - Before gameplay/rendering/UI/assets/build work, read `skills/registry.yaml` and route one primary skill with up to three supporting skills. Read selected `skills/*/SKILL.md`, `docs/SKILL_EXECUTION.md` and `docs/RESEARCH_BASELINE.md`. Record selected paths, observed sources and validation outcome. Missing evidence blocks completion claims.
-- Current Godot 4.3 CI pin is provisional; research baseline documents version/SDK discrepancies. Validate and reconcile before build closure.
+- Godot 4.7.2 is the verified CI/export pin; treat earlier 4.3 notes as history, not current configuration.
 
 ## Engineering
 - Engine: Godot 4.x, GDScript, mobile-first 3D, web + Android dual-export target.
@@ -22,6 +22,11 @@ Read in order: README.md → docs/BOOTSTRAP_NEW_CHAT.md → docs/ARCHITECTURE.md
 - Separate public playable demo assets from private characters/creative data.
 - Do not upload private reference art, secrets, copyrighted third-party assets or generated save data.
 - Run validation and export tests before claiming a build is working. Report what was actually tested.
+
+## Required slice synchronization
+- Follow `docs/SLICE_EXECUTION_CONTRACT.md` before and after every implementation slice.
+- Do not mark a slice complete until ROADMAP, CURRENT_STATE, VALIDATION_MATRIX and affected docs are synced and remotely read back. Preserve each distinct level: code, CI, deploy, device, Creator approval.
+- Poll GitHub Actions and inspect actual job logs during active execution; do not delegate monitoring to Creator. Do not promise unattended monitoring outside an active session.
 
 ## Change protocol
 1. Inspect existing source, architecture, current checkpoint, and GitHub Actions.
