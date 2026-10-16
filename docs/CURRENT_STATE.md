@@ -140,3 +140,6 @@ Creator confirmed Cloudflare owner-only email OTP login works on phone (manual d
 
 ## Procedural facing repair — 2026-10-16
 Corrected foot toes to +Z to match player facing. Godot test 38875577208 passed; Web deployment 38875645418 passed; Cloudflare deployment 19575fa9-0f79-4ef2-aaff-a08cd055c53f successful at commit 328e9143edfa0cff7512aaab87bd8e28fa553d5c. Owner-only Access unchanged. Phone visual QA pending; no Orison public assets or APK.
+
+## M1.2b current-room Tap-to-Move slice — 2026-10-16
+Implemented `LifeSimRoomPathfinder` clearance-aware AStarGrid2D for current 14×14 room with furniture exclusion; `LifeSimMobileControls` distinguishes right-side taps from camera drags and preserves left joystick; `scripts/main.gd` adds target disc, 3D ray-plane targeting, auto path following, manual override and UI button exclusion. CI regression rejects furniture/off-map destinations and verifies a routed destination. Godot CI 38877092389 SUCCESS at source SHA 807e9710c1d5557de2f5c7bda608bf86d592f5c4. **This is a room-scoped A* grid implementation, NOT NavigationMesh/NavigationAgent3D, no multi-region/dynamic obstacle support yet.** Web deployment run 38877148454 in progress at checkpoint. Phone touch/orbit and save regression pending device verification; M1.2b remains OPEN until checks. Orison character assets not touched. APK manual-only.
