@@ -1,0 +1,27 @@
+name: Character Asset Audit
+on:
+  pull_request:
+    paths:
+      - 'tools/audit_gltf.py'
+      - 'tests/test_gltf_audit.py'
+      - 'assets/public/**'
+      - '.github/workflows/asset-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit tests
+        run: python -m unittest discover -s tests -p 'test_gltf_audit.py' -v
+      - name: Audit committed GLB and glTF models
+        run: |
+          find assets/public -type f \( -iname '*.glb' -o -iname '*.gltf' \) -print0 |
+          while IFS= read -r -d '' model; do
+            python tools/audit_gltf.py "$model" --require-rig
+          done
