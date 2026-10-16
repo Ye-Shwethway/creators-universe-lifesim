@@ -55,12 +55,12 @@ func _execute() -> void:
     var visual := LifeSimCharacterVisual.new()
     get_root().add_child(visual)
     await process_frame
-    _assert(visual.visual_mode() == "procedural", "missing approved asset uses fallback")
+    _assert(visual.visual_mode() == "rigged", "batch-02 GLB imported and adapter activated")
+    _assert(visual.animator != null and visual._has_motion("idle_in_place") and visual._has_motion("walk_in_place"), "two real animation clips found")
     visual.update_locomotion(0.016, 3.0)
-    _assert(visual.fallback != null and visual.fallback.visible, "fallback moves without animation asset")
-    var left_shoe: MeshInstance3D = visual.fallback.get_node("LeftFoot") as MeshInstance3D
-    var right_shoe: MeshInstance3D = visual.fallback.get_node("RightFoot") as MeshInstance3D
-    _assert(left_shoe.position.z > 0.0 and right_shoe.position.z > 0.0, "procedural shoe toes align with local +Z forward")
+    _assert(visual.active_motion.ends_with("walk_in_place"), "walk animation selected by movement")
+    visual.update_locomotion(0.016, 0.0)
+    _assert(visual.active_motion.ends_with("idle_in_place"), "idle animation selected when stopped")
     _assert(is_equal_approx(atan2(0.0, 1.0), 0.0), "controller +Z facing convention")
     var nav := LifeSimRoomPathfinder.new()
     _assert(not nav.route(Vector3.ZERO, Vector3(3.4, 0, -2.6)).size() > 0, "furniture destinations rejected")
