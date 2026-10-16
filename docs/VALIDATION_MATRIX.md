@@ -35,3 +35,6 @@ Creator-supplied three screenshots and verbal device test verify bounded room vi
 
 ## M1.2 interaction gate — 2026-10-16
 Proximity button and state counter implemented and passed headless Godot validation (run 38860662402); Pages production deploy (run 38860715373, deployment 25c4981a-8a3d-4a29-a952-ec1cad65ab92) SUCCESS. Device browser tap/interactions, exactly-once behavior, pause/range regressions and persistent event state are not verified. No Android workflow was triggered.
+
+## Interaction-to-action transition — 2026-10-16
+Creator screenshot demonstrates Training Box `USE` button and one successful counter update on Redmi K70 (prior simple counter version). Timed action engine subsequently passed headless validation run 38861694481. Exactly-once after timed completion, pause semantics, cancel flow and device experience remain to verify; do not equate headless success with user-device validation. APK intentionally not built.
