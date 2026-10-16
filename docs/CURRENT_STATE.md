@@ -86,3 +86,6 @@ Creator Redmi K70 feedback verifies restored avatar location on returning to web
 
 ## Camera Web deploy verification — 2026-10-16
 GitHub deploy run 38863369314 completed SUCCESS; Cloudflare production deployment ad4bcb3b-fbc2-49fc-8ecb-776c73900275 SUCCESS for source SHA 6af231af4cfb8157c7f6b38ee476cb43b4b1c070. Camera occlusion correction is deployed, not yet Redmi K70 verified. APK intentionally not built.
+
+## M1.3 procedural human bridge — 2026-10-16
+Creator screenshot shows scene with walls partly black but camera behavior improved. Replaced capsule visual with original procedural humanoid torso/head/arms/legs, locomotion limb swing; added ambient light and two-sided materials for simple wall visibility. Existing physics/avatar save/interaction logic preserved. Validation run 38865092817 SUCCESS. New humanoid visual, lighting and GPU behavior remain device-untested; actual MakeHuman GLB rig/morphs untested. APK manual-only.
