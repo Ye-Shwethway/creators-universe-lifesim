@@ -10,10 +10,10 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Verify preinstalled Android SDK tools
-        run: |
-          echo "ANDROID_HOME=${ANDROID_HOME}"
-          sdkmanager --version
+      - name: Setup Android SDK commandline tools
+        uses: android-actions/setup-android@v4
+        with:
+          packages: platform-tools
       - name: Install Android SDK
         run: |
           sdkmanager --install "platform-tools" "platforms;android-35" "build-tools;35.0.1" "ndk;28.1.13356709"
