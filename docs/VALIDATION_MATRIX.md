@@ -74,3 +74,6 @@ Screenshot demonstrates procedural 3D humanoid and improved wall illumination on
 
 ## M1.3 asset metadata gate — 2026-10-16
 Created offline glTF/GLB audit with rig/morph metadata reporting plus test fixtures; run 38866465959 test and audit steps SUCCESS. Tests use synthetic examples, not actual MakeHuman-generated GLB. V09 character asset gate remains PENDING until license provenance, imported skeleton, morph usability, animation deformation and device visual validation.
+
+## V09 actual GLB attempt — 2026-10-16
+Isolated candidate 52-bone/122-morph documented CC0-source GLB successfully downloaded and passed metadata-only rig/morph audit in 38866915144. However Godot reported many sparse indices buffer-view errors, so real import/visual readiness FAILS despite overall first job green. Tightened CI to fail on importer errors; strict rerun 38867034279 pending. V09 NOT VERIFIED; candidate quarantined from distribution.
