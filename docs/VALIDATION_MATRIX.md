@@ -5,11 +5,11 @@ No checks marked PASS without direct evidence.
 | Gate | Required observed evidence | Current |
 | --- | --- | --- |
 | V01 Godot engine pin | exact patch URL, hash, matched templates and config | PENDING |
-| V02 Headless import | successful command log for full project | PENDING |
-| V03 Script smoke | zero parser errors plus smoke startup | PENDING |
-| V04 Web build | archive manifest + successful export + HTTP served smoke | PENDING |
+| V02 Headless import | successful command log for full project | CI PASS — validate run 38855603349 |
+| V03 Script smoke | zero parser errors plus smoke startup | CI PASS — validate run 38855603349 |
+| V04 Web build | archive manifest + successful export + HTTP served smoke | PARTIAL: Web export artifact produced, browser/HTTP smoke not verified |
 | V05 Web on phone | Redmi K70 Chrome opens; touch, input, stability | PENDING |
-| V06 Android APK | signed installable arm64 build + install/launch log | PENDING |
+| V06 Android APK | signed installable arm64 build + install/launch log | PARTIAL: APK artifact produced; signing/install/launch not device-verified |
 | V07 Gameplay determinism | same seed/replay gives identical state | PENDING |
 | V08 Save integrity | write/load/migrate/corruption detection tests | PENDING |
 | V09 Character asset | verified license, rig/morph/anatomical review | PENDING |
