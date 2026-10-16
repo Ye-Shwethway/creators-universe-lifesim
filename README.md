@@ -8,6 +8,8 @@ Mobile-first, Sims-inspired character life simulation in **Godot 4 + GDScript**.
 - [Agent instructions](AGENTS.md)
 - [New-chat bootstrap](docs/BOOTSTRAP_NEW_CHAT.md)
 - [Architecture](docs/ARCHITECTURE.md)
+- [Domain skills registry](skills/registry.yaml) and [skill instructions](skills/README.md)
+- [Research baseline](docs/RESEARCH_BASELINE.md) and [execution gates](docs/SKILL_EXECUTION.md)
 - [Implementation roadmap](docs/ROADMAP.md)
 - [Current state / handoff](docs/CURRENT_STATE.md)
 - [Asset protection policy](docs/ASSET_POLICY.md)
