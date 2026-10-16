@@ -15,3 +15,6 @@ Current risks: Godot version/export template compatibility; Android SDK provisio
 
 ## Architecture research checkpoint (2026-10-16)
 Added ADR-0001, ADR-0002, character assets assessment and V01–V12 validation matrix. Godot 4.7 stable series is proposed as migration target; exact patch and matching Android toolchain still need CI proof. No third-party model approved; no device test/verified export. Next execution: migrate/pin after checking 4.7 patch assets, then run CI and fix actual failures.
+
+## Execution update — 2026-10-16
+Updated validate/Web/Android workflows and project.godot from Godot 4.3 to 4.7-stable source references, plus Android 35/NDK r28b provisional SDK setup. See docs/CHARACTER_PIPELINE_SPIKE.md for MakeHuman research route. **These changes are committed but CI/Web/APK outcomes have not been verified.** V01–V06 remain PENDING until external run logs/artifact inspection and Redmi K70 testing. Debug signing and Android export settings may still require correction.
