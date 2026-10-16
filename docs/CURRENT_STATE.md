@@ -21,3 +21,11 @@ Updated validate/Web/Android workflows and project.godot from Godot 4.3 to 4.7-s
 
 ## CI pin follow-up — 2026-10-16
 Verified upstream Godot 4.7.2-stable exists; updated project and all three CI workflows to the matching 4.7.2 editor/template version. Android workflow now generates a disposable debug key and supplies Godot debug keystore environment variables. **No completed GitHub Actions run has been verified in this session; no installable APK or working Web artifact is claimed.** Review action logs and export preset Android signing/toolchain on the next validation pass; device tests remain pending.
+
+## Live CI verification — 2026-10-16
+Direct workflow dispatch + bounded polling results:
+- Validate Godot run 38855603349: completed success.
+- Web export run 38855603531: completed success; artifact lifesim-web, 10,300,187 bytes, sha256:e85ccc3c4e65920f93e41da012abe6eac2b90f0a630759462cdc589e808ea75e.
+- Android initially failed on deprecated setup-android v3 'tools', then missing sdkmanager after removal, then ETC2/ASTC property path. Corrected using setup-android@v4 and [rendering] textures/vram_compression/import_etc2_astc=true.
+- Android run 38856054864: completed success; artifact lifesim-android-debug, 28,017,343 bytes, sha256:e76f68cd87c76ee15b81df80658905029f6b680cb0e63b4f24dc379e19b8ee28.
+- These artifacts are short retention. **CI success proves export, not successful install/launch, signed package inspection, frame rate or phone browser runtime**. M0 physical device gate remains open.
