@@ -1,8 +1,8 @@
 extends CharacterBody3D
 class_name LifeSimPlayer
 
-const WALK_SPEED: float = 4.2
-const RUN_SPEED: float = 6.2
+const WALK_SPEED: float = 0.691 # Batch-03 measured stroll reference, Godot meters/sec
+const RUN_SPEED: float = 1.382 # Temporary sprint preview; no dedicated run clip yet
 const ACCELERATION: float = 12.0
 var input_axis: Vector2 = Vector2.ZERO
 var running: bool = false
