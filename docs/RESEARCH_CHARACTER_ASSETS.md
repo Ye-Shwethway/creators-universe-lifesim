@@ -22,3 +22,12 @@ NO third-party asset has been selected, licensed, imported or proven to meet the
 References:
 https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/index.html
 https://docs.godotengine.org/en/stable/tutorials/animation/animation_tree.html
+
+## New sourced candidate: MakeHuman core assets
+The MakeHuman Community states its **bundled/core graphical assets** and exported models are CC0; software source has separate AGPL/GPL licensing. This is a strong candidate for a procedural human base mesh, NOT proof it already supplies the required independent Godot blend shapes for body-part growth. Third-party repository add-ons may have different licenses. Test actual mesh, rig, deformation, export format, and build inclusion before acceptance.
+Sources:
+https://static.makehumancommunity.org/makehuman/faq/can_i_sell_models_created_with_makehuman.html
+https://github.com/makehumancommunity/makehuman/blob/master/LICENSE.md
+
+## Required test experiment
+Produce a **generic** legally redistributable character, export glTF 2.0/GLB, import into Godot, inspect Skeleton3D + actual shape key names, measure combined morph behavior and verify web/Android performance. Do not claim acceptance based on vendor screenshots or license summaries alone.
