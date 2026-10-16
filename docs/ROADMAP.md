@@ -95,3 +95,6 @@ Creator provided three landscape screenshots showing the bounded room, objects, 
 
 ## Timed-action Web deployment — 2026-10-16
 Cloudflare production deployment 76930774-8bc2-4b72-a83f-207a89dd646c SUCCESS for code commit 44699162a130e2e7d7b69d143809ff39c31095de; headless validation 38861694481 SUCCESS. This is a new version of the interaction logic. The prior Creator phone screenshot verifies the former immediate-counter interaction, not the new timed completion. Phone validation of the 1.8-second action lifecycle remains open. APK build remains manual-only.
+
+### Local save prototype 2026-10-16
+Added `scripts/persistence/save_manager.gd` schema v1 allowlisted interaction counts. Loads at startup and writes after completed actions. Godot validation 38862100255 SUCCESS; Pages deploy 38862189075 SUCCESS. Browser-refresh retention, migration and corruption tests pending; M3 persistence not closed. APK manual-only.
