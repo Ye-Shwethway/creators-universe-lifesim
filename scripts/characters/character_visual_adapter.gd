@@ -2,7 +2,7 @@ extends Node3D
 class_name LifeSimCharacterVisual
 ## Adapter between LifeSim movement and a future versioned, licensed rigged character.
 ## Missing/unapproved assets always fall back to original procedural humanoid.
-const APPROVED_SCENE: String = "res://assets/public/approved/humanoid.tscn"
+const APPROVED_SCENE: String = "res://assets/public/approved/humanoid.glb"
 const IDLE: String = "idle_in_place"
 const WALK: String = "walk_in_place"
 var fallback: ProceduralHumanoid
@@ -15,7 +15,7 @@ func _ready() -> void:
     fallback = ProceduralHumanoid.new()
     fallback.name = "ProceduralFallback"
     add_child(fallback)
-    # The asset is intentionally absent until the privacy/license QA gate passes.
+    # Public generic test character; never load private Darian/canon assets.
     if not ResourceLoader.exists(APPROVED_SCENE):
         return
     var res: Resource = load(APPROVED_SCENE)
