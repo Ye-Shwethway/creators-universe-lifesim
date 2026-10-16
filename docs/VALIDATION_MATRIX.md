@@ -44,3 +44,6 @@ Cloudflare production deployment 76930774-8bc2-4b72-a83f-207a89dd646c SUCCESS fo
 
 ## Local save prototype 2026-10-16
 Creator screenshot shows active `Using Training Box...`; completion remains unverified from that image. Headless Godot validation 38862100255 passed for save manager integration. Browser reload/persistent storage, integrity and migration tests remain pending; V08 not PASS. Pages deploy 38862189075 success. APK not triggered.
+
+## V08 partial device verification — 2026-10-16
+Creator Redmi K70 screenshot shows `Training Box completed (4)` following reported three completions, exit/reopen and one more completion. Basic local usage-count persistence across revisit is DEVICE VERIFIED. Overall V08 remains PARTIAL: no corrupted-save, migrations, full-world state or storage-eviction validation.
