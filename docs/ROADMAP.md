@@ -86,3 +86,9 @@ Creator provided three landscape screenshots showing the bounded room, objects, 
 - Godot validation [38860662402](https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38860662402): SUCCESS.
 - Cloudflare Pages deployment [38860715373](https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38860715373): SUCCESS; deployment `25c4981a-8a3d-4a29-a952-ec1cad65ab92`, source `d28755d0b81846ac2e11101d141520dee9f17c61`.
 - Interactive behavior is deployed but **Creator phone gesture/tap verification remains pending**. M1.2 stays OPEN; no APK build triggered (manual-only policy).
+
+### M1.2 Creator interaction confirmation + action lifecycle (2026-10-16)
+- Creator screenshot shows `Training Box used 1 time(s)` after tapping contextual USE; touch interaction verified on Redmi K70.
+- Timed reusable action engine added with idle/active, start/complete/cancel signals, per-object count and one-action-at-a-time guard; Godot headless validate run 38861694481 SUCCESS.
+- New action lifecycle is code/CI verified, not yet device verified. Game state is session-only; persistence and robust event ownership remain future work. M1.2 remains OPEN pending new Web deploy and mobile validation.
+- APK manual-only; Web-first development continues.
