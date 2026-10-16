@@ -62,3 +62,6 @@ Source `d28755d0b81846ac2e11101d141520dee9f17c61`: scripts/main.gd gained neares
 
 ## Interaction QA and timed-action checkpoint — 2026-10-16
 Creator screenshot verifies Training Box contextual USE succeeded and incremented counter on Redmi K70. Implemented scripts/simulation/action_engine.gd plus integration into scripts/main.gd: idle/active timed action, started/completed/cancelled events, one-at-a-time guard, per-target completion count. Godot validation run 38861694481 SUCCESS. This new timed behavior itself remains untested on physical device, is session-only and does not yet persist. APK remains manual-only.
+
+## Timed-action Web deployment — 2026-10-16
+Cloudflare production deployment 76930774-8bc2-4b72-a83f-207a89dd646c SUCCESS for code commit 44699162a130e2e7d7b69d143809ff39c31095de; headless validation 38861694481 SUCCESS. This is a new version of the interaction logic. The prior Creator phone screenshot verifies the former immediate-counter interaction, not the new timed completion. Phone validation of the 1.8-second action lifecycle remains open. APK build remains manual-only.
