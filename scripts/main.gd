@@ -81,7 +81,19 @@ func _physics_process(delta: float) -> void:
     player.camera_yaw = yaw
     var focus := player.global_position + Vector3.UP * 1.2
     var ray := Vector3(sin(yaw)*cos(pitch), -sin(pitch), cos(yaw)*cos(pitch))
-    cam.global_position = cam.global_position.lerp(focus + ray * 6.0, minf(1.0, delta * 9.0))
+    var wanted: Vector3 = focus + ray * 6.0
+    var space: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+    var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(focus, wanted)
+    query.exclude = [player.get_rid()]
+    var hit: Dictionary = space.intersect_ray(query)
+    if not hit.is_empty():
+        var along: float = focus.distance_to(hit["position"])
+        wanted = focus + ray * maxf(0.45, along - 0.3)
+    # Snap inward on collisions so smoothing cannot leave the camera embedded in a wall.
+    if not hit.is_empty() or cam.global_position.distance_to(wanted) > 8.0:
+        cam.global_position = wanted
+    else:
+        cam.global_position = cam.global_position.lerp(wanted, minf(1.0, delta * 9.0))
     cam.look_at(focus)
 
 func _orbit(d: Vector2) -> void:
