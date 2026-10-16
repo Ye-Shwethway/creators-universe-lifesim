@@ -57,6 +57,9 @@ func _execute() -> void:
     await process_frame
     _assert(visual.visual_mode() == "rigged", "batch-02 GLB imported and adapter activated")
     _assert(visual.animator != null and visual._has_motion("idle_in_place") and visual._has_motion("walk_in_place"), "two real animation clips found")
+    var walk_clip: Animation = visual.animator.get_animation(visual._resolve_animation("walk_in_place"))
+    var idle_clip: Animation = visual.animator.get_animation(visual._resolve_animation("idle_in_place"))
+    _assert(walk_clip.loop_mode == Animation.LOOP_LINEAR and idle_clip.loop_mode == Animation.LOOP_LINEAR, "imported idle/walk clips enforce continuous looping")
     visual.update_locomotion(0.016, 3.0)
     _assert(visual.active_motion.ends_with("walk_in_place"), "walk animation selected by movement")
     visual.update_locomotion(0.016, 0.0)
