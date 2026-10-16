@@ -27,10 +27,23 @@ jobs:
           unzip -q Godot_v4.7.2-stable_linux.x86_64.zip
           chmod +x Godot_v4.7.2-stable_linux.x86_64
           sudo mv Godot_v4.7.2-stable_linux.x86_64 /usr/local/bin/godot
+      - name: Normalize sparse GLB accessors with Blender roundtrip
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y blender
+          cat > /tmp/lifesim-candidate/roundtrip.py <<'PY'
+          import bpy
+          bpy.ops.wm.read_factory_settings(use_empty=True)
+          bpy.ops.import_scene.gltf(filepath="/tmp/lifesim-candidate/humanoid.glb")
+          bpy.ops.export_scene.gltf(filepath="/tmp/lifesim-candidate/normalized.glb", export_format="GLB", export_morph=True, export_skins=True, export_animations=True)
+          PY
+          blender -b -t 2 --python /tmp/lifesim-candidate/roundtrip.py
+          test -s /tmp/lifesim-candidate/normalized.glb
+          python tools/audit_gltf.py /tmp/lifesim-candidate/normalized.glb --require-rig --require-four-morphs | tee /tmp/lifesim-candidate/normalized-audit.json
       - name: Godot GLB importer smoke
         run: |
           mkdir -p assets/public/candidates
-          cp /tmp/lifesim-candidate/humanoid.glb assets/public/candidates/humanoid.glb
+          cp /tmp/lifesim-candidate/normalized.glb assets/public/candidates/humanoid.glb
           godot --headless --path . --editor --quit 2>&1 | tee /tmp/lifesim-candidate/godot-import.log
           test -d .godot/imported
           if grep -Eiq "ERROR:|Parse Error|Failed to import|Sparse indices buffer view size" /tmp/lifesim-candidate/godot-import.log; then
