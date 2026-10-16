@@ -26,3 +26,6 @@ Godot validate run 38858928498 SUCCESS; Web build 38858928342 SUCCESS; Android e
 
 ## Creator direct mobile feedback — 2026-10-16
 Redmi K70 Web controls: touch movement/camera verified working by Creator. Found fall-off-floor with no recovery. Code-side recovery and containment patch committed; fix requires new Web deployment and phone recheck. M1.2 room collision/furniture committed only; no interaction test. APK explicitly manual-trigger only under new Web-first policy; no routine APK run required for interim Web slices.
+
+## Web-first boundary/room checkpoint — 2026-10-16
+Godot CI 38859675610 SUCCESS; Web CI 38859675605 SUCCESS; Pages production deployment dcaf0886-cec5-4db4-a74a-9879c3da4d4c SUCCESS. Creator previously verified joystick/camera but observed walking off edge and permanent fall; code fix now deployed, NOT yet verified on Redmi K70. Collision room and procedural props exported, not yet verified on device. APK intentionally not triggered; manual-only policy applies.
