@@ -62,3 +62,6 @@ User device reentry confirms avatar position restoration and continued counter (
 
 ## Camera Web deploy verification — 2026-10-16
 GitHub deploy run 38863369314 completed SUCCESS; Cloudflare production deployment ad4bcb3b-fbc2-49fc-8ecb-776c73900275 SUCCESS for source SHA 6af231af4cfb8157c7f6b38ee476cb43b4b1c070. Camera occlusion correction is deployed, not yet Redmi K70 verified. APK intentionally not built.
+
+## M1.3 character/lighting spike — 2026-10-16
+Code-level original geometry humanoid with simple limb swing and room material/ambient changes; Godot validation 38865092817 PASS. Creator phone screenshot documents black wall regions before patch. Post-patch phone visual, frame rate, MakeHuman rig/glTF blend shapes and animation deformation remain NOT VERIFIED. Do not mark character asset acceptance gate PASS. APK not built.
