@@ -47,3 +47,6 @@ Creator screenshot shows active `Using Training Box...`; completion remains unve
 
 ## V08 partial device verification — 2026-10-16
 Creator Redmi K70 screenshot shows `Training Box completed (4)` following reported three completions, exit/reopen and one more completion. Basic local usage-count persistence across revisit is DEVICE VERIFIED. Overall V08 remains PARTIAL: no corrupted-save, migrations, full-world state or storage-eviction validation.
+
+## World pose persistence — 2026-10-16
+Extended v1 save format with bounded character position and camera orientation; Godot validation run 38862774933 SUCCESS. Backward compatibility implemented but automated migration/restore runtime and Creator device tests not yet observed. V08 remains partial, not complete. APK manual-only.
