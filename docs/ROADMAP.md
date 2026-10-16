@@ -98,3 +98,7 @@ Cloudflare production deployment 76930774-8bc2-4b72-a83f-207a89dd646c SUCCESS fo
 
 ### Local save prototype 2026-10-16
 Added `scripts/persistence/save_manager.gd` schema v1 allowlisted interaction counts. Loads at startup and writes after completed actions. Godot validation 38862100255 SUCCESS; Pages deploy 38862189075 SUCCESS. Browser-refresh retention, migration and corruption tests pending; M3 persistence not closed. APK manual-only.
+
+### Creator browser persistence QA — 2026-10-16
+- [x] Redmi K70 browser session test: completed Training Box three times, exited/reopened game, completed once more, and UI displayed `Training Box completed (4)`; Creator screenshot supplied. Basic completed-action usage-counter persistence is DEVICE VERIFIED.
+- Full world-state persistence, migration, corruption recovery and quota eviction remain NOT verified; M3 save system not closed. Browser site-data deletion/private browsing may remove local save.
