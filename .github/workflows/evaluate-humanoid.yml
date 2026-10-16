@@ -1,0 +1,43 @@
+name: Evaluate CC0 Humanoid Candidate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  evaluate:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download candidate without publishing to the game
+        run: |
+          mkdir -p /tmp/lifesim-candidate
+          curl --fail --location --retry 3 --max-time 90 --output /tmp/lifesim-candidate/humanoid.glb \
+            https://raw.githubusercontent.com/nirholas/three.ws/main/public/avatars/parametric-base.glb
+          ls -lh /tmp/lifesim-candidate/humanoid.glb
+          sha256sum /tmp/lifesim-candidate/humanoid.glb
+      - name: Inspect actual candidate metadata
+        run: |
+          python tools/audit_gltf.py /tmp/lifesim-candidate/humanoid.glb --require-rig --require-four-morphs | tee /tmp/lifesim-candidate/audit.json
+      - name: Install Godot and matching templates
+        run: |
+          wget -q https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          unzip -q Godot_v4.7.2-stable_linux.x86_64.zip
+          chmod +x Godot_v4.7.2-stable_linux.x86_64
+          sudo mv Godot_v4.7.2-stable_linux.x86_64 /usr/local/bin/godot
+      - name: Godot GLB importer smoke
+        run: |
+          mkdir -p assets/public/candidates
+          cp /tmp/lifesim-candidate/humanoid.glb assets/public/candidates/humanoid.glb
+          godot --headless --path . --editor --quit
+          test -d .godot/imported
+      - name: Upload audit report only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: humanoid-candidate-report
+          path: /tmp/lifesim-candidate/audit.json
+          if-no-files-found: ignore
+          retention-days: 1
