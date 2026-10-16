@@ -1,10 +1,11 @@
 {
   "schema_version": 1,
-  "asset": "batch-02/man-02",
-  "measured": false,
-  "stride_length_m": 0,
-  "cycle_duration_s": 1.1,
+  "asset": "batch-03/man-03",
+  "animation_clip": "walk_natural",
+  "measured": true,
+  "stride_length_m": 1.152,
+  "cycle_duration_s": 1.667,
   "root_motion": false,
   "forward_axis": "+Z",
-  "note": "Uncalibrated baseline. Set measured true only after foot-contact and full-cycle stride audit of the final refined animation; values in meters."
+  "note": "Producer-measured gait reference. Runtime Web QA and foot-contact acceptance remain pending; walk controller nominal speed 0.691 m/s."
 }
