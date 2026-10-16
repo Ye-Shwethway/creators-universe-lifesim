@@ -107,3 +107,6 @@ GitHub Actions https://github.com/Ye-Shwethway/creators-universe-lifesim/actions
 
 ## M1.3 GLB normalization result — 2026-10-16
 Blender roundtrip test first failed in run 38867251760 because system numpy was missing, not due to model. Added python3-numpy and retried: run 38867423771 SUCCESS. Blender normalized GLB retained skin/morph metadata; Godot 4.7.2 strict importer showed no ERROR matches. Model has not been committed to public assets or included in website. Next asset/license provenance and genuine morph/deformation inspection followed by Web integration. Procedural humanoid still live. APK manual-only.
+
+## M1.3 latest implementation — 2026-10-16
+Godot runtime scene-instantiation inspection script now exists (tools/inspect_humanoid.gd). Isolated candidate evaluation workflow checks loaded bones, mesh instances and morph targets in addition to imported GLB metadata. Workflow run 38868131012 in progress at time of writing; Blender conversion may take time. No candidate committed as public asset or shipped to Pages. Existing procedural character unchanged; no Android build.
