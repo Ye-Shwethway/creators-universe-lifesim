@@ -13,7 +13,7 @@ Statuses: PLANNED → IN_PROGRESS → CODE_COMPLETE → CI_VERIFIED → DEVICE_V
 - [ ] Baseline browser console and runtime/performance diagnostics (not inferred from screenshot)
 
 ## M1 — Mobile Playable Prototype
-### M1.1 — Mobile controls + viewport [DEPLOYED; DEVICE VERIFICATION PENDING]
+### M1.1 — Mobile controls + viewport [DEVICE VERIFIED FOR CONTROLS; RECOVERY FIX PENDING RECHECK]
 Dependencies: M0 web runtime demonstrated; primary skill game-ui-ux; supporting godot-engineering, mobile-3d-rendering, game-quality-assurance.
 Scope:
 - [x] Separate CharacterBody3D controller, collision floor and capsule proxy; WASD/keyboard fallback (CI verified)
@@ -25,7 +25,7 @@ Scope:
 Acceptance: no GDScript parse errors; deterministic controller unit/smoke where possible; successful Web+APK build; no private assets; Creator on-phone reports joystick/camera usable, layout legible. Record FPS observation separately; not necessary to fabricate performance metrics.
 Deliverable: versioned Web deploy + APK artifact, screenshots/device feedback. Do not mark CLOSED from CI alone.
 
-### M1.2 — Interactive mini-environment [PLANNED]
+### M1.2 — Interactive mini-environment [IN PROGRESS; SIMPLE COLLISION ROOM COMMITTED]
 Depends on M1.1 usability.
 - [ ] One low-poly room, walls and stable physics/collision
 - [ ] Simple furniture/prop geometry; proximity interaction focus and interact action
@@ -55,6 +55,9 @@ Acceptance: all applicable V01-V12 checks satisfied or explicitly deferred with 
 - Pages deployment: https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38859007168 (success)
 - Cloudflare latest production deployment 9819ff7e-2e51-4772-867b-8f6aaa536056 (success), source SHA 32a9193fcb66b330b9745c309e0caa6ff585a9a3.
 - Device joystick/camera functionality and APK installation are NOT verified. Slice remains open pending real-device feedback.
+
+## Delivery policy — Creator decision (2026-10-16)
+Development is **Web-first**. Run Godot validation, Web export and Cloudflare deploy for routine slices; Android APK is **manual workflow_dispatch only** and should not be built for every slice. Existing Android workflow is preserved as a future compatibility gate. Device test evidence: Creator confirms touch movement and camera working on Redmi K70, but walked off platform and fell, unable to recover. A floor-boundary clamp and fall respawn fix plus simple wall/furniture collisions are committed; phone recheck pending. Work on M1.2 interaction and camera collision continues after web smoke verification.
 
 ## M2 — Character Lab [PLANNED]
 Rigged customization, blend shapes, imperial measurements, safe interpolation, character profile saves and private identity review.
