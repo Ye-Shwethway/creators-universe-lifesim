@@ -80,3 +80,6 @@ Isolated candidate 52-bone/122-morph documented CC0-source GLB successfully down
 
 ## Strict import gate result — 2026-10-16
 GitHub Actions https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38867034279 concluded FAILURE as designed, at Godot GLB importer smoke step, following sparse accessor errors. This confirms candidate cannot be accepted unchanged. No production asset/deploy change; live procedural humanoid unaffected. Next experiment: re-export with dense accessors in Blender/gltf-transform or test alternate CC0 GLB, then rerun strict import.
+
+## V09 GLB conversion progress — 2026-10-16
+Isolated candidate normalized by Blender and imported in Godot 4.7.2 without matched error logs: run 38867423771 SUCCESS. Metadata retains linked skin and 4+ morphs. This is an import-compatibility subgate only; rig animation, morph semantic/body quality, asset license, runtime visuals and phone FPS are NOT verified; full V09 remains PARTIAL.
