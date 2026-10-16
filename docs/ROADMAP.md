@@ -144,3 +144,6 @@ GitHub Actions https://github.com/Ye-Shwethway/creators-universe-lifesim/actions
 ### M1.3 sparse accessor recovery — 2026-10-16
 - Blender roundtrip now reconstructs candidate GLB in isolated GitHub CI, preserving reported rig and >=4 morph targets; strict Godot import passed without logged importer errors. Workflow run 38867423771 SUCCESS.
 - Original GLB was rejected; normalized output remains CI temporary and is NOT committed/deployed. Actual rig deformations, independent named physique morphs, source asset legal provenance and on-phone rendering remain to be verified before replacing procedural character. M1.3 OPEN; APK manual-only.
+
+### M1.3 instantiated GLB gate — 2026-10-16
+Added tools/inspect_humanoid.gd to instantiate normalized candidate as a PackedScene in Godot and enumerate actual Skeleton3D nodes/bone counts, MeshInstance3D blend shapes and AnimationPlayer clips; acceptance script rejects absent rigs and <4 shape keys. Updated isolated evaluate-humanoid workflow to run the check. Run 38868131012 dispatched and awaiting result at checkpoint. No model deployed. Web-first/APK manual-only.
