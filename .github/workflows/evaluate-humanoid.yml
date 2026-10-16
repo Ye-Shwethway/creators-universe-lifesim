@@ -50,6 +50,14 @@ jobs:
             echo "Godot import reported errors; candidate REJECTED for production"
             exit 1
           fi
+      - name: Instantiate Godot imported scene and inspect rig
+        run: |
+          godot --headless --path . --script res://tools/inspect_humanoid.gd 2>&1 | tee /tmp/lifesim-candidate/runtime-inspection.log
+          if grep -Eiq "ERROR:|Parse Error|SCRIPT ERROR" /tmp/lifesim-candidate/runtime-inspection.log; then
+            echo "Character scene inspection detected runtime errors"
+            exit 1
+          fi
+          grep -q 'LIFESIM_HUMANOID_INSPECT' /tmp/lifesim-candidate/runtime-inspection.log
       - name: Upload audit report only
         if: always()
         uses: actions/upload-artifact@v4
