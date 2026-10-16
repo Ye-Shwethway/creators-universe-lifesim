@@ -23,3 +23,6 @@ Creator approved Web-first iteration on 2026-10-16. Test and deploy Web routinel
 
 ## CI simulation regression — 2026-10-16
 Creator device-confirmed Cloudflare owner login. Added tests/runtime_regression.gd to CI for action transitions, save clamping/counts, corrupt save handling and procedural visual fallback. Found/fixed shutdown detached-player save bug. Validate run 38874462587 SUCCESS (13 assertions); Web deploy run 38874646788 SUCCESS, Cloudflare deployment 978f05aa-afd9-43fd-aaf2-9522e28b96da success, matching commit 926f0d00ee3c8e1fb62a5cc7f6c9979e196cb22e. Browser runtime on new deploy not independently retested, APK not triggered, Orison batch-02 not integrated.
+
+## M1.3 orientation fix checkpoint — 2026-10-16
+Procedural toes reoriented from -Z to +Z to match controller forward; 2 new regression assertions. Godot CI 38875577208 successful, Web workflow 38875645418 successful, CF 19575fa9-0f79-4ef2-aaff-a08cd055c53f commit 328e9143edfa0cff7512aaab87bd8e28fa553d5c successful. Browser visual device verification pending. Access untouched. No Orison asset or APK.
