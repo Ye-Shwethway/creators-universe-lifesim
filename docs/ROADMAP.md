@@ -33,6 +33,17 @@ Depends on M1.1 usability.
 - [ ] Collision and camera obstruction regression checks
 Acceptance: phone Web + Android checks; interactions activate exactly once; frame stability measured.
 
+### M1.2b — Tap-to-Move and hybrid navigation [PLANNED — NEXT GAMEPLAY PRIORITY]
+Creator request 2026-10-16: retain mobile joystick AND add tap-on-ground destination targeting, intended for future large worlds. This was not explicitly scheduled in the previous roadmap.
+- [ ] Ground hit-test via camera ray on valid navigable surfaces; show a visible target marker and clear it on arrival/cancel.
+- [ ] NavigationRegion3D/NavigationMesh plus NavigationAgent3D pathfinding around walls and furniture; handle invalid, unreachable and off-map taps safely.
+- [ ] Hybrid control priority: any joystick/keyboard movement cancels auto-walk immediately; camera orbit touch must not set destinations, and UI interactions must not leak taps into navigation.
+- [ ] Path following respects current CharacterBody3D collisions/turning, does not teleport, and reuses the visual adapter idle/walk interface.
+- [ ] Initially support current room; later handle multi-region maps, dynamic obstacles, and object interaction approach positions (follow-up, not falsely claimed complete).
+- [ ] Deterministic headless tests for navigation target selection/cancellation/reachability plus Web runtime CI and Creator Redmi K70 tap-versus-drag test.
+Dependencies: current M1.2 room collisions and M1.1 touch controls; independent of Orison batch-02 GLB. Web-first; manual APK only.
+Acceptance: tap walk reaches reachable marked point without crossing walls/furniture, joystick instantly overrides, camera orbit continues to work, no input leakage from HUD, device verification and browser performance recorded.
+
 ### M1.3 — Generic humanoid/character pipeline [PLANNED]
 Depends on M1.1 and license/rig gate.
 - [ ] Compare MakeHuman→Blender→GLB with independently authored/blend shape meshes
