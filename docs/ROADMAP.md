@@ -80,3 +80,9 @@ Every implementation slice must end with source commit SHA, selected skills, cha
 
 ### Redmi K70 Creator QA — 2026-10-16
 Creator provided three landscape screenshots showing the bounded room, objects, joystick and multiple orbit views; reports no more floor falls and successful object contact/collision. These specific visual, boundary and collision checks are DEVICE_VERIFIED. Interaction button, proximity prompt and game-state event hooks are not implemented/tested and M1.2 remains OPEN. Android APK stays manual-only.
+
+### M1.2 interaction slice — 2026-10-16
+- [x] Proximity selection of Rest Bench and Training Box (distance threshold 2.4 world units), touch-accessible contextual USE button and on-screen usage counter. Event output is an initial console event hook, not yet a persistent simulation event bus.
+- Godot validation [38860662402](https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38860662402): SUCCESS.
+- Cloudflare Pages deployment [38860715373](https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38860715373): SUCCESS; deployment `25c4981a-8a3d-4a29-a952-ec1cad65ab92`, source `d28755d0b81846ac2e11101d141520dee9f17c61`.
+- Interactive behavior is deployed but **Creator phone gesture/tap verification remains pending**. M1.2 stays OPEN; no APK build triggered (manual-only policy).
