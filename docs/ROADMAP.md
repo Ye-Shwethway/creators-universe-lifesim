@@ -162,3 +162,7 @@ Committed `tools/render_humanoid.py` and extended `evaluate-humanoid.yml`: after
 
 ## M1.3 actual visual QA result — 2026-10-16
 GitHub Actions run 38869748123 SUCCESS after adding Xvfb/Mesa (prior run 38869523580 failed `Unable to open a display`). Workflow produced neutral, shouldersWider, chestPectorals, armsMuscular PNGs; artifact `humanoid-visual-qa` ID 12033236185. Downloaded and visually inspected all four images. Full human mesh is visible, but **skin highlights are heavily overexposed and morph differences are not convincingly legible** at current camera/lighting; therefore qualitative deformation/appearance gate remains OPEN. This is a visualization/test setup problem needing controlled illumination plus geometric delta measurements, not evidence that mesh/morph quality is acceptable. Candidate not published, asset/license clearance pending; no APK built.
+
+### M1.3 game-side character adapter — 2026-10-16
+- Added `LifeSimCharacterVisual` adapter to isolate model/idle-walk animation playback from movement physics and persistence; approved assets loaded only from `res://assets/public/approved/humanoid.tscn`. Unavailable scene/animations fall back to existing procedural humanoid, without modifying Orison batch-01 or publicizing private images.
+- Wired `scripts/main.gd` through adapter. Godot validation run 38872498839 SUCCESS; Web deploy/device visual gate pending. Orison batch-02 assets and provenance not yet accepted. APK manual-only.
