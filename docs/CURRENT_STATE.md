@@ -53,3 +53,6 @@ Creator tested M1.1 on Redmi K70, confirmed touch movement and camera usable, an
 
 ## Web-first M1.2 room prototype verified — 2026-10-16
 Creator confirmed M1.1 controls usable on Redmi K70; observed unrecoverable edge fall. Code introduced bounds + respawn and basic procedural four-wall room with two solid props. Godot validation run 38859675610 success; Web build run 38859675605 success; Cloudflare Pages production deployment dcaf0886-cec5-4db4-a74a-9879c3da4d4c success, source 18a5eda9204ce379d250834dd8ceb6db4679dfb6. APK build NOT triggered per Creator Web-first/manual-APK preference. Live mobile recheck for fall recovery and room collision still pending; interaction system has not been implemented. M1.2 remains IN PROGRESS.
+
+## Latest Creator on-device QA — 2026-10-16
+Three landscape Redmi K70 browser screenshots were supplied, showing 3D room, capsule, furniture, HUD and changing camera views at lifesim.drthorne.uk. Creator confirms no further fall through/over floor boundary and object contact/collisions work. Record M1.1 recovery fix and M1.2 room/collision as DEVICE_VERIFIED by Creator feedback. M1.2 interaction prompt/button and event hook remain missing; slice remains OPEN. Web-first development continues; APK manual-only.
