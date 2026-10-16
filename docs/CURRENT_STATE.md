@@ -110,3 +110,6 @@ Blender roundtrip test first failed in run 38867251760 because system numpy was 
 
 ## M1.3 latest implementation — 2026-10-16
 Godot runtime scene-instantiation inspection script now exists (tools/inspect_humanoid.gd). Isolated candidate evaluation workflow checks loaded bones, mesh instances and morph targets in addition to imported GLB metadata. Workflow run 38868131012 in progress at time of writing; Blender conversion may take time. No candidate committed as public asset or shipped to Pages. Existing procedural character unchanged; no Android build.
+
+## Instantiated Godot humanoid gate VERIFIED — 2026-10-16
+Run https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38868131012 completed SUCCESS. Godot scene actually loaded/instantiated after Blender normalization, runtime stdout: `LIFESIM_HUMANOID_INSPECT skeletons=1 bones=52 mesh_nodes=4 shape_keys=395 clips=0`. These are summed shape keys across mesh instances, not 395 unique editable body attributes. Thus structural rig/shape imports PASS; **zero imported animation clips**, and individual physique controls/body deformation, legal redistribution, and mobile Web performance remain UNVERIFIED. Candidate still only in isolated CI, not shipped. Next: animation retarget/author idle-walk and pose/morph semantic audit; preserve existing visual until gates passed. APK manual-only.
