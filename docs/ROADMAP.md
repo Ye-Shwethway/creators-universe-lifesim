@@ -156,3 +156,6 @@ Isolated normalized candidate's imported Godot scene showed mixamorig skeleton b
 
 ## M1.3 real Godot pose/morph assignment gate — 2026-10-16
 CI run 38869052568 SUCCESS, runtime output `LIFESIM_HUMANOID_INSPECT skeletons=1 bones=52 mesh_nodes=4 shape_keys=395 clips=0` and `LIFESIM_POSE_MORPH_TEST bones=4 morph_assignments=5 PASS`. Verified four mixamorig limb bones accept pose rotations and five named physique blend shapes (shouldersWider, chestPectorals, waistNarrower, armsMuscular, bodyMuscular) accept/get 0.5 values on imported MeshInstance3D. This proves runtime setters, NOT realistic visual deformation or animation playback; 0 animation clips, license clearance and Web device acceptance still open. Candidate isolated in CI, live procedural humanoid remains. Web-first, APK manual-only.
+
+### M1.3 isolated visual QA pipeline — 2026-10-16
+Committed `tools/render_humanoid.py` and extended `evaluate-humanoid.yml`: after normalized GLB rig/morph import, Blender generates neutral, shouldersWider, chestPectorals, armsMuscular comparison PNGs in temporary CI; artifacts retained two days for manual review. Run 38869523580 triggered, result not yet verified at checkpoint. No model assets added to public repo/build. Visual comparison and license clearance still pending; existing procedural avatar stays live, APK manual-only.
