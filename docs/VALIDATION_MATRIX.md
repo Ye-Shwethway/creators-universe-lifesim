@@ -29,3 +29,6 @@ Redmi K70 Web controls: touch movement/camera verified working by Creator. Found
 
 ## Web-first boundary/room checkpoint — 2026-10-16
 Godot CI 38859675610 SUCCESS; Web CI 38859675605 SUCCESS; Pages production deployment dcaf0886-cec5-4db4-a74a-9879c3da4d4c SUCCESS. Creator previously verified joystick/camera but observed walking off edge and permanent fall; code fix now deployed, NOT yet verified on Redmi K70. Collision room and procedural props exported, not yet verified on device. APK intentionally not triggered; manual-only policy applies.
+
+## Redmi K70 follow-up — 2026-10-16
+Creator-supplied three screenshots and verbal device test verify bounded room visualization, camera orbit, no repeated falls and basic solid-object collisions/contact. This does NOT verify proximity prompts, INTERACT UI, scene event state, Android runtime, FPS, camera obstruction handling or automated regression tests; those gates remain open.
