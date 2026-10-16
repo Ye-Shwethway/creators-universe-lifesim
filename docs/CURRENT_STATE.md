@@ -80,3 +80,6 @@ Godot validate run 38862774933 SUCCESS. Cloudflare deploy run 38862907783 SUCCES
 
 ## Latest Creator QA — 2026-10-16
 Creator confirmed LifeSim reopened with capsule at previous position; screenshot shows Training Box completed (5). Local avatar position persistence and counter continuity verified on Redmi K70. Camera orientation specifically not established. Next: prevent camera clipping into room walls and refine mobile visual HUD; Web-first, APK manual-only.
+
+## M1 camera occlusion patch — 2026-10-16
+Creator Redmi K70 feedback verifies restored avatar location on returning to web game and counter continuity (screenshot shows Training Box completed 5). Added physics raycast from avatar focus to desired chase camera point, excluding player and correcting camera position before wall clipping. Source commit 6af231af4cfb8157c7f6b38ee476cb43b4b1c070. Validate run 38863320136 SUCCESS; deployment run 38863369314 pending read-back. Physical on-device camera collision not yet verified. Web-first, APK manual-only.
