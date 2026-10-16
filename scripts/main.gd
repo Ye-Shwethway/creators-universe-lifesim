@@ -1,7 +1,7 @@
 extends Node3D
 var player: LifeSimPlayer
 var cam: Camera3D
-var humanoid: ProceduralHumanoid
+var humanoid: LifeSimCharacterVisual
 var yaw := 0.3
 var pitch := -0.35
 var paused := false
@@ -39,8 +39,8 @@ func _ready() -> void:
     player.add_child(col)
     var body := Node3D.new()
     body.name = "Visual"
-    humanoid = ProceduralHumanoid.new()
-    humanoid.name = "HumanoidPrototype"
+    humanoid = LifeSimCharacterVisual.new()
+    humanoid.name = "CharacterVisual"
     body.add_child(humanoid)
     player.add_child(body)
     add_child(player)
