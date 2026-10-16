@@ -112,3 +112,6 @@ Godot validate run 38862774933 SUCCESS. Cloudflare deploy run 38862907783 SUCCES
 
 ### Redmi K70 position restore verification — 2026-10-16
 Creator exited/reopened LifeSim and confirmed player resumed at the previous room location. Screenshot also shows `Training Box completed (5)`. Character position restore and usage-count continuity are DEVICE_VERIFIED. Camera yaw/pitch restoration is not independently confirmed from this screenshot. Full saves and migration remain open.
+
+### Camera obstruction refinement — 2026-10-16
+Creator verified avatar location restores across browser revisit and observed Training Box completed (5); camera rotation restore has not been independently tested. Implemented physics raycast camera occlusion adjustment for walls, with fast inward reposition. Godot validation run 38863320136 SUCCESS; Web deploy run 38863369314 dispatched. Mobile camera-collision check pending. APK manual-only.
