@@ -20,3 +20,6 @@ No checks marked PASS without direct evidence.
 Suggested targets (NOT measured): Web 30 FPS stable / native 30–60 FPS when feasible. Performance acceptance is device-evidence based, not merely CI success.
 
 Every task receipt includes source-version SHA, skill files read, specific test commands, run URLs, outcomes and unknowns.
+
+## M1.1 checkpoint — 2026-10-16
+Godot validate run 38858928498 SUCCESS; Web build 38858928342 SUCCESS; Android export 38858830484 SUCCESS; Pages deploy 38859007168 SUCCESS; Cloudflare production deployment 9819ff7e-2e51-4772-867b-8f6aaa536056 SUCCESS. Joystick, camera gesture, responsive HUD, APK installation, FPS and memory on Redmi K70 still require physical-device verification. M1.1 is DEPLOYED but not CLOSED.
