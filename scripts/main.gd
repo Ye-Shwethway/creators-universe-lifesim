@@ -172,6 +172,7 @@ func _advance_navigation() -> void:
     if kb.length_squared() > 0.02 or _manual_axis.length_squared() > 0.02:
         if not auto_path.is_empty():
             _cancel_navigation()
+        player.input_axis = _manual_axis
         return
     if auto_path.is_empty():
         return
