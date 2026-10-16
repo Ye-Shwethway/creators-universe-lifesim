@@ -104,3 +104,6 @@ Candidate from public GitHub nirholas/three.ws MakeHuman-derived parametric-base
 
 ## Strict import gate result — 2026-10-16
 GitHub Actions https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38867034279 concluded FAILURE as designed, at Godot GLB importer smoke step, following sparse accessor errors. This confirms candidate cannot be accepted unchanged. No production asset/deploy change; live procedural humanoid unaffected. Next experiment: re-export with dense accessors in Blender/gltf-transform or test alternate CC0 GLB, then rerun strict import.
+
+## M1.3 GLB normalization result — 2026-10-16
+Blender roundtrip test first failed in run 38867251760 because system numpy was missing, not due to model. Added python3-numpy and retried: run 38867423771 SUCCESS. Blender normalized GLB retained skin/morph metadata; Godot 4.7.2 strict importer showed no ERROR matches. Model has not been committed to public assets or included in website. Next asset/license provenance and genuine morph/deformation inspection followed by Web integration. Procedural humanoid still live. APK manual-only.
