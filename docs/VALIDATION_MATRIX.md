@@ -95,3 +95,6 @@ Run 38868803605 SUCCESS and logs contain 52 named mixamorig bones plus named phy
 
 ## M1.3 real Godot pose/morph assignment gate — 2026-10-16
 CI run 38869052568 SUCCESS, runtime output `LIFESIM_HUMANOID_INSPECT skeletons=1 bones=52 mesh_nodes=4 shape_keys=395 clips=0` and `LIFESIM_POSE_MORPH_TEST bones=4 morph_assignments=5 PASS`. Verified four mixamorig limb bones accept pose rotations and five named physique blend shapes (shouldersWider, chestPectorals, waistNarrower, armsMuscular, bodyMuscular) accept/get 0.5 values on imported MeshInstance3D. This proves runtime setters, NOT realistic visual deformation or animation playback; 0 animation clips, license clearance and Web device acceptance still open. Candidate isolated in CI, live procedural humanoid remains. Web-first, APK manual-only.
+
+## M1.3 visual QA gate — 2026-10-16
+Automated isolated Blender renders for neutral/shoulder/chest/arm morph comparison added; run 38869523580 pending at checkpoint. Runtime mesh pose, animation, deformation quality and licensing not yet visually approved. Do not mark V09 complete.
