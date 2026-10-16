@@ -55,9 +55,10 @@ func _execute() -> void:
     var visual := LifeSimCharacterVisual.new()
     get_root().add_child(visual)
     await process_frame
-    _assert(visual.visual_mode() == "rigged", "batch-02 GLB imported and adapter activated")
+    _assert(visual.visual_mode() == "rigged", "approved GLB imported and adapter activated")
     _assert(visual.animator != null and visual._has_motion(visual.selected_idle) and visual._has_motion(visual.selected_walk), "selected animation pair exists")
-    _assert(visual.selected_idle == "idle_in_place" and visual.selected_walk == "walk_in_place", "batch-02 remains backwards-compatible")
+    _assert((visual.selected_idle == "idle_in_place" and visual.selected_walk == "walk_in_place") or (visual.selected_idle == "idle_relaxed" and visual.selected_walk == "walk_natural"), "supported clip pair selected")
+    _assert(visual.selected_idle == "idle_relaxed" and visual.selected_walk == "walk_natural", "batch-03 clip pair preferred and active")
     var walk_clip: Animation = visual.animator.get_animation(visual._resolve_animation(visual.selected_walk))
     var idle_clip: Animation = visual.animator.get_animation(visual._resolve_animation(visual.selected_idle))
     _assert(walk_clip.loop_mode == Animation.LOOP_LINEAR and idle_clip.loop_mode == Animation.LOOP_LINEAR, "imported idle/walk clips enforce continuous looping")
