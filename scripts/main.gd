@@ -1,6 +1,7 @@
 extends Node3D
 var player: LifeSimPlayer
 var cam: Camera3D
+var humanoid: ProceduralHumanoid
 var yaw := 0.3
 var pitch := -0.35
 var paused := false
@@ -38,12 +39,9 @@ func _ready() -> void:
     player.add_child(col)
     var body := Node3D.new()
     body.name = "Visual"
-    var mesh := MeshInstance3D.new()
-    var visual_mesh := CapsuleMesh.new()
-    visual_mesh.height = 1.9
-    mesh.mesh = visual_mesh
-    mesh.position.y = 0.95
-    body.add_child(mesh)
+    humanoid = ProceduralHumanoid.new()
+    humanoid.name = "HumanoidPrototype"
+    body.add_child(humanoid)
     player.add_child(body)
     add_child(player)
     cam = Camera3D.new()
@@ -51,7 +49,17 @@ func _ready() -> void:
     cam.current = true
     var sun := DirectionalLight3D.new()
     sun.rotation_degrees = Vector3(-48, -35, 0)
+    sun.light_energy = 0.85
     add_child(sun)
+    var ambient := WorldEnvironment.new()
+    var environment := Environment.new()
+    environment.background_mode = Environment.BG_COLOR
+    environment.background_color = Color(0.19, 0.23, 0.29)
+    environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
+    environment.ambient_light_color = Color(0.77, 0.82, 0.90)
+    environment.ambient_light_energy = 0.8
+    ambient.environment = environment
+    add_child(ambient)
     var layer := CanvasLayer.new()
     add_child(layer)
     var hud := LifeSimMobileControls.new()
@@ -78,6 +86,7 @@ func _physics_process(delta: float) -> void:
         save_elapsed = 0.0
         _save_world()
     _refresh_focus()
+    humanoid.update_locomotion(delta, Vector2(player.velocity.x, player.velocity.z).length())
     player.camera_yaw = yaw
     var focus := player.global_position + Vector3.UP * 1.2
     var ray := Vector3(sin(yaw)*cos(pitch), -sin(pitch), cos(yaw)*cos(pitch))
@@ -133,6 +142,8 @@ func _box_prop(center: Vector3, size: Vector3, tint: Color, interact_name: Strin
     visual.mesh = mesh
     var mat := StandardMaterial3D.new()
     mat.albedo_color = tint
+    mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+    mat.roughness = 0.9
     visual.material_override = mat
     body.add_child(visual)
     add_child(body)
