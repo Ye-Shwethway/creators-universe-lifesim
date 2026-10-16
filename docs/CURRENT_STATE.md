@@ -68,3 +68,6 @@ Cloudflare production deployment 76930774-8bc2-4b72-a83f-207a89dd646c SUCCESS fo
 
 ## 2026-10-16 Local save prototype
 Creator screenshot verifies timed action started, not completion. Versioned allowlisted usage counter save added with load on startup and save on completion. Godot validation run 38862100255 succeeded; Pages deploy run 38862189075 succeeded. Browser reload persistence untested. Android manual-only.
+
+## Latest Creator device persistence verification — 2026-10-16
+Creator reports Training Box used 3 times, exited/reopened LifeSim, then used one additional time. Screenshot shows `Training Box completed (4)`. This verifies basic local usage-count save/load across the reported revisit on Redmi K70. Does not establish comprehensive world saves, storage durability against browser data clearing, schema migration or corruption handling. Web-first, Android manual-only continues.
