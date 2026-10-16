@@ -62,6 +62,10 @@ func _execute() -> void:
     var right_shoe: MeshInstance3D = visual.fallback.get_node("RightFoot") as MeshInstance3D
     _assert(left_shoe.position.z > 0.0 and right_shoe.position.z > 0.0, "procedural shoe toes align with local +Z forward")
     _assert(is_equal_approx(atan2(0.0, 1.0), 0.0), "controller +Z facing convention")
+    var nav := LifeSimRoomPathfinder.new()
+    _assert(not nav.route(Vector3.ZERO, Vector3(3.4, 0, -2.6)).size() > 0, "furniture destinations rejected")
+    _assert(not nav.route(Vector3.ZERO, Vector3(7.5, 0, 0)).size() > 0, "off-map destinations rejected")
+    _assert(nav.route(Vector3.ZERO, Vector3(4.5, 0, -4.5)).size() > 2, "route around furniture exists")
     visual.queue_free()
     engine.queue_free()
     # Preserve existing file if any, rather than leaving test save content behind.
