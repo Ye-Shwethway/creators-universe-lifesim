@@ -15,7 +15,7 @@ func _initialize() -> void:
 func _execute() -> void:
     var save_path: String = LifeSimSaveManager.SAVE_PATH
     # CI job uses a clean runner. Guard against accidental local/device execution.
-    if not OS.has_feature("server") and not OS.has_feature("headless"):
+    if OS.get_environment("GITHUB_ACTIONS") != "true":
         push_error("Runtime regression must run headless on a dedicated CI runner")
         quit(6)
         return
