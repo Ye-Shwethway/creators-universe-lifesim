@@ -98,3 +98,6 @@ Creator screenshot verifies procedural humanoid renders on Redmi K70 and wall da
 
 ## Latest M1.3 asset-gate work — 2026-10-16
 Added offline GLB/glTF audit, synthetic file unit tests and GitHub workflow in source. CI asset-audit run 38866465959 reported successful test and audit steps; job overall conclusion should be read back. No genuine MakeHuman mesh or morph import has yet been tested, and procedural humanoid remains current live character. Official MPFB docs recommend GameEngine rig/material and export-copy/clean proxy; licenses of third-party add-ons require separate review. Android manual-only.
+
+## M1.3 real GLB evaluation — 2026-10-16
+Candidate from public GitHub nirholas/three.ws MakeHuman-derived parametric-base.glb fetched by isolated CI. Metadata skeleton/morph audit passed, but actual Godot editor import log contains sparse indices buffer view errors; initial 38866915144 success was false-green because Godot exit 0. Strict importer log failure gate committed and new run 38867034279 dispatched. Candidate intentionally not published in project or Web. Next: resolve sparse glTF accessors or select alternative CC0 rigged asset; prove Godot import and mobile visualization before replacing procedural character.
