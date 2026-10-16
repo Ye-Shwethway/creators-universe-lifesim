@@ -1,0 +1,24 @@
+# Godot editor cache / build outputs
+.godot/
+.import/
+build/
+dist/
+*.apk
+*.aab
+*.keystore
+*.jks
+*.p12
+*.env
+.env*
+# Non-public project assets and data
+assets/private/
+private/
+secrets/
+saves/
+user://
+*.save
+*.bak
+# tools
+.DS_Store
+.idea/
+.vscode/
