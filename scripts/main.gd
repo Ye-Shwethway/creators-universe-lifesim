@@ -4,6 +4,11 @@ var cam: Camera3D
 var yaw := 0.3
 var pitch := -0.35
 var paused := false
+var targets: Array[StaticBody3D] = []
+var focused: StaticBody3D
+var object_states: Dictionary = {}
+var interact_button: Button
+var feedback: Label
 
 func _ready() -> void:
     var ground := StaticBody3D.new()
@@ -52,9 +57,11 @@ func _ready() -> void:
     hud.movement_changed.connect(func(a: Vector2) -> void: player.input_axis = a)
     hud.camera_dragged.connect(_orbit)
     hud.pause_toggled.connect(_pause)
+    _setup_interaction_ui(layer)
 
 func _physics_process(delta: float) -> void:
     if paused: return
+    _refresh_focus()
     player.camera_yaw = yaw
     var focus := player.global_position + Vector3.UP * 1.2
     var ray := Vector3(sin(yaw)*cos(pitch), -sin(pitch), cos(yaw)*cos(pitch))
@@ -77,12 +84,16 @@ func _build_room() -> void:
     _box_prop(Vector3(7.0, 1.5, 0.0), Vector3(0.35, 3.0, 14.0), Color(0.30, 0.38, 0.44))
     _box_prop(Vector3(0.0, 1.5, 7.0), Vector3(14.0, 3.0, 0.35), Color(0.30, 0.38, 0.44))
     # Simple furniture silhouettes, no third-party assets.
-    _box_prop(Vector3(3.4, 0.4, -2.6), Vector3(2.2, 0.8, 1.0), Color(0.33, 0.53, 0.58))
-    _box_prop(Vector3(-3.0, 0.45, -2.6), Vector3(1.6, 0.9, 0.8), Color(0.50, 0.38, 0.29))
+    _box_prop(Vector3(3.4, 0.4, -2.6), Vector3(2.2, 0.8, 1.0), Color(0.33, 0.53, 0.58), "Rest Bench")
+    _box_prop(Vector3(-3.0, 0.45, -2.6), Vector3(1.6, 0.9, 0.8), Color(0.50, 0.38, 0.29), "Training Box")
 
-func _box_prop(center: Vector3, size: Vector3, tint: Color) -> void:
+func _box_prop(center: Vector3, size: Vector3, tint: Color, interact_name: String = "") -> void:
     var body := StaticBody3D.new()
     body.position = center
+    body.name = interact_name if interact_name != "" else "Room Wall"
+    if interact_name != "":
+        targets.append(body)
+        object_states[interact_name] = 0
     var collision := CollisionShape3D.new()
     var shape := BoxShape3D.new()
     shape.size = size
@@ -97,3 +108,45 @@ func _box_prop(center: Vector3, size: Vector3, tint: Color) -> void:
     visual.material_override = mat
     body.add_child(visual)
     add_child(body)
+
+func _setup_interaction_ui(layer: CanvasLayer) -> void:
+    interact_button = Button.new()
+    interact_button.text = "INTERACT"
+    interact_button.visible = false
+    interact_button.anchor_left = 1.0
+    interact_button.anchor_right = 1.0
+    interact_button.anchor_top = 1.0
+    interact_button.anchor_bottom = 1.0
+    interact_button.offset_left = -182.0
+    interact_button.offset_right = -20.0
+    interact_button.offset_top = -156.0
+    interact_button.offset_bottom = -90.0
+    interact_button.pressed.connect(_interact)
+    layer.add_child(interact_button)
+    feedback = Label.new()
+    feedback.position = Vector2(22, 64)
+    feedback.add_theme_font_size_override("font_size", 19)
+    layer.add_child(feedback)
+
+func _refresh_focus() -> void:
+    var nearest: StaticBody3D = null
+    var best := 2.4
+    for item in targets:
+        var d := player.global_position.distance_to(item.global_position)
+        if d < best:
+            best = d
+            nearest = item
+    focused = nearest
+    interact_button.visible = focused != null
+    if focused != null:
+        interact_button.text = "USE: " + focused.name
+
+func _interact() -> void:
+    if paused or focused == null:
+        return
+    if player.global_position.distance_to(focused.global_position) > 2.4:
+        return
+    var next_state: int = int(object_states.get(focused.name, 0)) + 1
+    object_states[focused.name] = next_state
+    feedback.text = focused.name + " used " + str(next_state) + " time(s)"
+    print("LIFESIM_EVENT interact target=", focused.name, " count=", next_state)
