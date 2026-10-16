@@ -101,3 +101,6 @@ Added offline GLB/glTF audit, synthetic file unit tests and GitHub workflow in s
 
 ## M1.3 real GLB evaluation — 2026-10-16
 Candidate from public GitHub nirholas/three.ws MakeHuman-derived parametric-base.glb fetched by isolated CI. Metadata skeleton/morph audit passed, but actual Godot editor import log contains sparse indices buffer view errors; initial 38866915144 success was false-green because Godot exit 0. Strict importer log failure gate committed and new run 38867034279 dispatched. Candidate intentionally not published in project or Web. Next: resolve sparse glTF accessors or select alternative CC0 rigged asset; prove Godot import and mobile visualization before replacing procedural character.
+
+## Strict import gate result — 2026-10-16
+GitHub Actions https://github.com/Ye-Shwethway/creators-universe-lifesim/actions/runs/38867034279 concluded FAILURE as designed, at Godot GLB importer smoke step, following sparse accessor errors. This confirms candidate cannot be accepted unchanged. No production asset/deploy change; live procedural humanoid unaffected. Next experiment: re-export with dense accessors in Blender/gltf-transform or test alternate CC0 GLB, then rerun strict import.
